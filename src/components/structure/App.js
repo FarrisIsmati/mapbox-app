@@ -2,13 +2,13 @@
 import React, { Component }           from 'react'
 
 //COMPONENTS
-import Map                            from './components/mapbox/Map'
+import NewGame                        from '../new/NewGame'
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Map />
+      <div className="app__holder">
+        <NewGame />
       </div>
     )
   }

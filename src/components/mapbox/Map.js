@@ -1,11 +1,11 @@
 //DEPENDENCIES
 import React, { Component }       from 'react'
-import secrets                    from '../../secrets'
 import mapboxgl                   from 'mapbox-gl'
+import PropTypes                  from 'prop-types'
+import secrets                    from '../../secrets'
 
 //STYLES
 import                                 'mapbox-gl/dist/mapbox-gl.css'
-import                                 './map.css'
 
 class Map extends Component {
   constructor(props) {
@@ -16,7 +16,9 @@ class Map extends Component {
     mapboxgl.accessToken = secrets.mapboxPK
     let map = new mapboxgl.Map({
         container: this.mapContainer,
-        style: 'mapbox://styles/mapbox/streets-v9'
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [-70,10],
+        zoom: 2
     })
   }
 
@@ -29,6 +31,10 @@ class Map extends Component {
       <div className="map" ref={el => this.mapContainer = el} />
     )
   }
+}
+
+Map.propTypes = {
+  interactive: PropTypes.bool
 }
 
 export default Map
