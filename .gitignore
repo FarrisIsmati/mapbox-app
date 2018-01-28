@@ -9,6 +9,12 @@
 # production
 /build
 
+# tokens
+secrets.js
+
+# css
+src/**/*.css
+
 # misc
 .DS_Store
 .env.local
