@@ -1,4 +1,5 @@
-@import "./index";
-@import "./_map";
-@import "./_newgame";
-@import "./_app";
+// Modules
+@import "./modules/all";
+
+// Components
+@import "./components/all";

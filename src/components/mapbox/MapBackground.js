@@ -1,13 +1,12 @@
 //DEPENDENCIES
 import React, { Component }       from 'react'
 import mapboxgl                   from 'mapbox-gl'
-import PropTypes                  from 'prop-types'
 import secrets                    from '../../secrets'
 
 //STYLES
 import                                 'mapbox-gl/dist/mapbox-gl.css'
 
-class Map extends Component {
+class MapBackground extends Component {
   constructor(props) {
     super(props)
 
@@ -52,8 +51,8 @@ class Map extends Component {
         container: this.mapContainer,
         style: 'mapbox://styles/farrisismati/cjcz1pjhb078c2trlvec190bk',
         center: [this.randomStartingCoordinates().lng, this.randomStartingCoordinates().lat],
-        zoom: this.props.zoom,
-        interactive: this.props.interactive
+        zoom: 5,
+        interactive: false
     })
 
     this.mapPan(map, 30000)
@@ -70,14 +69,4 @@ class Map extends Component {
   }
 }
 
-Map.propTypes = {
-  interactive: PropTypes.bool,
-  zoom: PropTypes.number
-}
-
-Map.defaultProps = {
-  interactive: false,
-  zoom: 3
-}
-
-export default Map
+export default MapBackground
