@@ -1,0 +1,2 @@
+//GAME
+export const CHANGE_GAME_TITLE = 'CHANGE_GAME_TITLE'
