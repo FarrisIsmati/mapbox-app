@@ -8,7 +8,6 @@ import MapBackground                            from '../mapbox/MapBackground'
 class NewGame extends Component {
   constructor(props){
     super(props)
-
     this.onChangeInput = this.onChangeInput.bind(this)
   }
 
