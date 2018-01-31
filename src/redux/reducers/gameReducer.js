@@ -10,7 +10,7 @@ export function gameReducer(state = defaultState, action) {
   switch (action.type) {
     case CHANGE_GAME_TITLE:
       return {
-        ...state, ...action.payload.title
+        ...state, ...action.payload
       }
     default:
       return state
