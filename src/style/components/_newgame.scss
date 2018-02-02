@@ -4,14 +4,36 @@
 
 .newgame__overlay {
   position: absolute;
+  display: block;
   height: 100%;
   width: 100%;
   z-index: 10;
-  padding: 15% 10% 0 10%;
 
   h1 {
     font-weight: $bold;
     color: $mainText;
     font-size: $title-font-size;
+  }
+
+  .text__holder {
+      display: flex;
+      flex-direction: column;
+      align-self: flex-end;
+  }
+}
+
+.newgame__grid {
+  display: grid;
+  grid-template-rows: 50% auto;
+  height: 100%;
+  padding: 0 10% 0 15%;
+}
+
+//MEDIA QUERY
+@media (max-width: 768px) {
+  .newgame__overlay {
+    h1 {
+      font-size: 4.5em;
+    }
   }
 }

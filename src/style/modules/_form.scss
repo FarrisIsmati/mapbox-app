@@ -1,12 +1,19 @@
 .input__titlescreen {
-  padding: none;
   background-color: rgba(0,0,0,0);
   outline: none;
   border: none;
-  display: inline;
-  margin-bottom: 30px;
+  display: block;
+  padding: 0px;
+  width: 100%;
   font-family: $base-font-family;
   font-weight: $bold;
   color: $mainText;
   font-size: $title-font-size;
+}
+
+//MEDIA QUERY
+@media (max-width: 768px) {
+  .input__titlescreen {
+    font-size: 4.5em;
+  }
 }

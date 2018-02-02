@@ -26,16 +26,18 @@ class NewGame extends Component {
       <div className="newgame__holder">
 
         <div className="newgame__overlay">
-          <div className="text__holder">
-            <input
-              ref={el => this.input = el}
-              type="text"
-              className="input__titlescreen"
-              onChange={e=>{this.onChangeInput(e)}}
-              maxLength="7"
-              value={this.props.game.title}
-            ></input>
-            <h1>WHERE IS IT?</h1>
+          <div className="newgame__grid">
+            <div className="text__holder">
+              <input
+                ref={el => this.input = el}
+                type="text"
+                className="input__titlescreen"
+                onChange={e=>{this.onChangeInput(e)}}
+                maxLength="7"
+                value={this.props.game.title}
+              ></input>
+              <h1>WHERE IS IT?</h1>
+            </div>
           </div>
         </div>
 
