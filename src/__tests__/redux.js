@@ -21,7 +21,7 @@ describe('REDUX REDUCERS', () => {
   it('should return the initial state', ()=>{
     expect(rootReducer(undefined, {})).toEqual({
       game: {
-        title: '@%#!'
+        title: '@%#!,'
       }
     })
   })

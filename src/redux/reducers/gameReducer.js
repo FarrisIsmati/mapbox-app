@@ -3,7 +3,7 @@ import {
 }                            from "../constants/constants"
 
 const defaultState = {
-  title: '@%#!'
+  title: '@%#!,'
 }
 
 export function gameReducer(state = defaultState, action) {

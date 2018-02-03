@@ -36,8 +36,10 @@ class MapBackground extends Component {
   }
 
   mapPan(map, duration) {
+    let lat = this.randomCoordinate()
+    let long = this.randomCoordinate()
     map.panBy(
-      [this.randomCoordinate(), this.randomCoordinate()],
+      [lat, long],
       { duration: duration, easing: (t) => t * .5 }
     )
     setTimeout(()=>{
@@ -54,7 +56,7 @@ class MapBackground extends Component {
         zoom: 5,
         interactive: false
     })
-
+    this.setState({map: map})
     this.mapPan(map, 30000)
   }
 

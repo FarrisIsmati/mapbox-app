@@ -20,28 +20,28 @@ class NewGame extends Component {
   //Might have to remove this in mobile because a text pad would pop up
   componentDidMount() {
     this.input.focus()
-    let selectionStart = this.input.value.length * 2
+    let selectionStart = this.input.value.length
     this.input.setSelectionRange(selectionStart, selectionStart)
   }
 
   render() {
     return (
-      <div className="newgame__holder">
+      <div className="startgame__holder">
 
-        <div className="newgame__overlay">
-          <div className="newgame__grid">
+        <div className="startgame__overlay">
+          <div className="startgame__grid">
             <div className="text__holder">
               <input
                 ref={el => this.input = el}
                 type="text"
                 className="input__titlescreen"
                 onChange={e=>{this.onChangeInput(e)}}
-                maxLength="7"
+                maxLength="8"
                 value={this.props.game.title}
               ></input>
             <h1 className="noselect">WHERE IS IT?</h1>
             </div>
-            <Button1 name={'START'}></Button1>
+              <Button1 name={'START'} link={'game'}></Button1>
           </div>
         </div>
 
