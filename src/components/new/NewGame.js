@@ -2,7 +2,8 @@
 import React, { Component }           from 'react'
 
 //COMPONENTS
-import MapBackground                            from '../mapbox/MapBackground'
+import MapBackground                  from '../mapbox/MapBackground'
+import Button1                        from '../common/buttons/Button1'
 
 //Landing page
 class NewGame extends Component {
@@ -15,6 +16,8 @@ class NewGame extends Component {
     this.props.changeGameTitle(e.target.value.toUpperCase())
   }
 
+  //Upon mounting select the title so user knows it can be changed
+  //Might have to remove this in mobile because a text pad would pop up
   componentDidMount() {
     this.input.focus()
     let selectionStart = this.input.value.length * 2
@@ -36,8 +39,9 @@ class NewGame extends Component {
                 maxLength="7"
                 value={this.props.game.title}
               ></input>
-              <h1>WHERE IS IT?</h1>
+            <h1 className="noselect">WHERE IS IT?</h1>
             </div>
+            <Button1 name={'START'}></Button1>
           </div>
         </div>
 

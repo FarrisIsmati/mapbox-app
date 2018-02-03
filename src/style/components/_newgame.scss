@@ -13,6 +13,11 @@
     font-weight: $bold;
     color: $mainText;
     font-size: $title-font-size;
+    text-shadow:
+      2px 1px 1px #FFA856,
+      0px -1px 2px rgba(240, 97, 139,.5),
+      -2px 0px 1px #CB2354;
+    transition: text-shadow .1s;
   }
 
   .text__holder {

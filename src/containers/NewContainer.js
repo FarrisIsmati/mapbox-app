@@ -1,5 +1,5 @@
 //DEPENDENCIES
-import React, { Component }           from 'react'
+import React                          from 'react'
 import { connect }                    from 'react-redux'
 
 //COMPONENTS
@@ -10,16 +10,10 @@ import {
           changeGameTitle
         }                             from '../redux/actions/gameActions'
 
-class NewContainer extends Component {
-  constructor(props){
-    super(props)
-  }
-
-  render(){
-    return(
-      <NewGame />
-    )
-  }
+const NewContainer = () => {
+  return(
+    <NewGame />
+  )
 }
 
 const mapStateToProps = (state) => ({...state})
