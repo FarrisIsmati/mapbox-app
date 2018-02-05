@@ -3,11 +3,11 @@ import React                          from 'react'
 import { connect }                    from 'react-redux'
 
 //COMPONENTS
-
+import MapGame                        from '../components/mapbox/MapGame'
 
 const GameContainer = () => {
   return(
-    <p>Hi</p>
+    <MapGame coords={[-73,38]}></MapGame>
   )
 }
 

@@ -17,6 +17,7 @@ const App = ({ store }) => (
         <Switch>
           <Route exact path="/" component={StartContainer} />
           <Route path="/game" component={GameContainer} />
+          //Add a 404 page
           <Route path="/*" component={StartContainer} />
         </Switch>
       </div>
