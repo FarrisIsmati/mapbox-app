@@ -20,7 +20,7 @@ import                               './style/main.css'
 
 const loggerMiddleware = createLogger()
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   applyMiddleware(
     thunkMiddleware,
