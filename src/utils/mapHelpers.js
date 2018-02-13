@@ -9,7 +9,6 @@ import {
 export function draggableMarker(state) {
   let isDragging, isCursorOverPoint
   let canvas = state.map.getCanvasContainer()
-  console.log(store)
   let geojson = {
       "type": "FeatureCollection",
       "features": [{
