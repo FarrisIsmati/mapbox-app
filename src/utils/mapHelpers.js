@@ -30,20 +30,22 @@ export function draggableMarker(state) {
       "type": "circle",
       "source": "point",
       "paint": {
-          "circle-radius": 20,
-          "circle-color": "#3887be"
+        "circle-radius": 10,
+        "circle-stroke-width": 0,
+        "circle-stroke-color": "rgba(0,0,0,0)",
+        "circle-color": "#FFF"
       }
   })
 
   // When the cursor enters a feature in the point layer, prepare for dragging.
   state.map.on('mouseenter', 'point', function() {
-    canvas.style.cursor = 'move';
+    setStyle(3,'rgba(220,220,220,1)')
     isCursorOverPoint = true;
     state.map.dragPan.disable();
   });
 
   state.map.on('mouseleave', 'point', function() {
-      canvas.style.cursor = '';
+      setStyle(0,'rgba(0,0,0,0)')
       isCursorOverPoint = false;
       state.map.dragPan.enable();
   });
@@ -52,11 +54,12 @@ export function draggableMarker(state) {
 
   function mouseDown() {
       if (!isCursorOverPoint) return;
-
       isDragging = true;
 
       // Set a cursor indicator
       canvas.style.cursor = 'grab';
+      setStyle(3,'rgba(220,220,220,1)')
+
       // Mouse events
       state.map.on('mousemove', onMove.bind(this));
       state.map.once('mouseup', onUp);
@@ -65,9 +68,9 @@ export function draggableMarker(state) {
   function onMove(e) {
       if (!isDragging) return;
       let coords = e.lngLat;
-
       // Set a UI indicator for dragging.
       canvas.style.cursor = 'grabbing';
+      setStyle(3,'rgba(220,220,220,1)')
 
       // Update the Point feature in `geojson` coordinates
       // and call setData to the source layer `point` on it.
@@ -79,11 +82,16 @@ export function draggableMarker(state) {
   function onUp(e) {
       if (!isDragging) return;
       let coords = e.lngLat;
-
       canvas.style.cursor = '';
       isDragging = false;
+      setStyle(0,'rgba(0,0,0,0)')
 
       // Unbind mouse events
       state.map.off('mousemove', onMove);
+  }
+
+  function setStyle(width, color) {
+    state.map.setPaintProperty('point', 'circle-stroke-width', width)
+    state.map.setPaintProperty('point', 'circle-stroke-color', color)
   }
 }

@@ -16,7 +16,7 @@ class MapGame extends Component {
     mapboxgl.accessToken = secrets.mapboxPK
     let map = new mapboxgl.Map({
         container: this.mapContainer,
-        style: 'mapbox://styles/farrisismati/cjcz1pjhb078c2trlvec190bk',
+        style: 'mapbox://styles/farrisismati/cjdnh7yjh05hs2snz74ww9ubo',
         center: [0,0],
         zoom: 2,
         interactive: true

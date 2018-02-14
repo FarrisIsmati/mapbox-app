@@ -51,7 +51,7 @@ class MapBackground extends Component {
     mapboxgl.accessToken = secrets.mapboxPK
     let map = new mapboxgl.Map({
         container: this.mapContainer,
-        style: 'mapbox://styles/farrisismati/cjcz1pjhb078c2trlvec190bk',
+        style: 'mapbox://styles/farrisismati/cjdnh7yjh05hs2snz74ww9ubo',
         center: [this.randomStartingCoordinates().lng, this.randomStartingCoordinates().lat],
         zoom: 5,
         interactive: false
