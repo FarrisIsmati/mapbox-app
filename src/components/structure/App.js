@@ -7,7 +7,7 @@ import { BrowserRouter as Router,
        }                              from 'react-router-dom'
 
 //COMPONENTS
-import StartContainer                 from '../../containers/StartContainer'
+import HomeContainer                 from '../../containers/HomeContainer'
 import GameContainer                  from '../../containers/GameContainer'
 
 const App = ({ store }) => (
@@ -15,10 +15,10 @@ const App = ({ store }) => (
     <Router>
       <div className="app__holder">
         <Switch>
-          <Route exact path="/" component={StartContainer} />
+          <Route exact path="/" component={HomeContainer} />
           <Route path="/game" component={GameContainer} />
           //Add a 404 page
-          <Route path="/*" component={StartContainer} />
+          <Route path="/*" component={HomeContainer} />
         </Switch>
       </div>
     </Router>

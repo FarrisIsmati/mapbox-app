@@ -1,8 +1,8 @@
-.startgame__holder {
+.home__holder {
   height: 100%;
 }
 
-.startgame__overlay {
+.home__overlay {
   position: absolute;
   display: block;
   height: 100%;
@@ -27,7 +27,7 @@
   }
 }
 
-.startgame__grid {
+.home__grid {
   display: grid;
   grid-template-rows: 50% auto;
   height: 100%;
@@ -36,7 +36,7 @@
 
 //MEDIA QUERY
 @media (max-width: 768px) {
-  .startgame__overlay {
+  .home__overlay {
     h1 {
       font-size: 4.5em;
     }

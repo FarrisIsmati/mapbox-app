@@ -3,6 +3,7 @@ import React                          from 'react'
 import { connect }                    from 'react-redux'
 
 //COMPONENTS
+import SetupContainer                 from './SetupContainer'
 import mapGame                        from '../components/mapbox/MapGame'
 
 //REDUX
@@ -13,7 +14,9 @@ import {
 
 const GameContainer = () => {
   return(
-    <MapGame></MapGame>
+    <div className="fullheight">
+      <MapGame />
+    </div>
   )
 }
 

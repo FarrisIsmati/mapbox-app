@@ -6,7 +6,7 @@ import MapBackground                  from '../mapbox/MapBackground'
 import Button1                        from '../common/buttons/Button1'
 
 //Landing page
-class NewGame extends Component {
+class Home extends Component {
   constructor(props){
     super(props)
     this.onChangeInput = this.onChangeInput.bind(this)
@@ -26,10 +26,10 @@ class NewGame extends Component {
 
   render() {
     return (
-      <div className="startgame__holder">
+      <div className="home__holder">
 
-        <div className="startgame__overlay">
-          <div className="startgame__grid">
+        <div className="home__overlay">
+          <div className="home__grid">
             <div className="text__holder">
               <input
                 ref={el => this.input = el}
@@ -51,4 +51,4 @@ class NewGame extends Component {
   }
 }
 
-export default NewGame
+export default Home

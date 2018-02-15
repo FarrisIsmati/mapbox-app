@@ -3,16 +3,16 @@ import React                          from 'react'
 import { connect }                    from 'react-redux'
 
 //COMPONENTS
-import startGame                      from '../components/start/StartGame'
+import home                      from '../components/home/Home'
 
 //REDUX
 import {
           changeGameTitle
         }                             from '../redux/actions/gameActions'
 
-const StartContainer = () => {
+const HomeContainer = () => {
   return(
-    <StartGame />
+    <Home />
   )
 }
 
@@ -25,6 +25,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const StartGame = connect(mapStateToProps, mapDispatchToProps)(startGame)
+const Home = connect(mapStateToProps, mapDispatchToProps)(home)
 
-export default connect(mapStateToProps)(StartContainer)
+export default connect(mapStateToProps)(HomeContainer)
