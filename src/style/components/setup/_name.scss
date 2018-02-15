@@ -1,6 +1,6 @@
 .name__holder {
   height: 100%;
-  background-color: $primaryColor;
+  background: linear-gradient(to bottom, $secondaryColor -53%, $primaryColor 46%);
   display: flex;
   justify-content: center;
   align-items: center;
