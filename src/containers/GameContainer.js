@@ -14,8 +14,8 @@ import {
 
 const GameContainer = () => {
   return(
-    <div className="fullheight">
-      <MapGame />
+    <div className="gamecontainer__holder fullheight">
+      <SetupContainer />
     </div>
   )
 }

@@ -34,7 +34,7 @@ class Home extends Component {
               <input
                 ref={el => this.input = el}
                 type="text"
-                className="input__titlescreen"
+                className="input__large"
                 onChange={e=>{this.onChangeInput(e)}}
                 maxLength="8"
                 value={this.props.game.title}
