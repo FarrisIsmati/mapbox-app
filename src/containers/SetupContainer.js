@@ -3,7 +3,13 @@ import React                          from 'react'
 import { connect }                    from 'react-redux'
 
 //COMPONENTS
-import Name                           from '../components/setup/Name'
+import name                           from '../components/setup/Name'
+
+//REDUX
+import {
+          changePlayerName
+        }                             from '../redux/actions/playerActions'
+
 const SetupContainer = () => {
   return(
     <div className="setupcontainer__holder fullheight">
@@ -13,5 +19,14 @@ const SetupContainer = () => {
 }
 
 const mapStateToProps = (state) => ({...state})
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    changePlayerName: (playerName) => {
+      dispatch(changePlayerName(playerName))
+    }
+  }
+}
 
-export default connect(mapStateToProps)(SetupContainer)
+const Name = connect(mapStateToProps, mapDispatchToProps)(name)
+
+export default SetupContainer

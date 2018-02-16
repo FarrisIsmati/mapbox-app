@@ -1,10 +1,14 @@
-import * as actions                  from '../redux/actions/gameActions'
-import * as constant                 from '../redux/constants/constants'
-import {defaultState as gameState}   from '../redux/reducers/gameReducer'
-import rootReducer                   from '../redux/reducers/rootReducer'
+import * as actions                         from '../redux/actions/gameActions'
+import * as playerActions                   from '../redux/actions/playerActions'
+import * as constant                        from '../redux/constants/constants'
+import {defaultState as gameState}          from '../redux/reducers/gameReducer'
+import {defaultState as playerState}        from '../redux/reducers/playerReducer'
+import rootReducer                          from '../redux/reducers/rootReducer'
+
+//GAME
 
 //ACTIONS
-describe('REDUX ACTIONS', () => {
+describe('REDUX ACTIONS GAME', () => {
   it('should create an action to change game title', () => {
     const text = 'test'
     const expectedAction = {
@@ -29,11 +33,14 @@ describe('REDUX ACTIONS', () => {
 })
 
 //REDUCERS
-describe('REDUX REDUCERS', () => {
+describe('REDUX REDUCERS GAME', () => {
   it('should return the initial state', ()=>{
     expect(rootReducer(undefined, {})).toEqual({
       game: {
         ...gameState
+      },
+      player: {
+        ...playerState
       }
     })
   })
@@ -47,6 +54,9 @@ describe('REDUX REDUCERS', () => {
     })).toEqual({
       game: {
         ...gameState, ...{title: 'test1'}
+      },
+      player: {
+        ...playerState
       }
     })
   })
@@ -61,6 +71,44 @@ describe('REDUX REDUCERS', () => {
     })).toEqual({
       game: {
         ...gameState, ...{mapMarkerCoords: coords}
+      },
+      player: {
+        ...playerState
+      }
+    })
+  })
+})
+
+//PLAYER
+
+//ACTIONS
+describe('REDUX ACTIONS PLAYER', () => {
+  it('should create an action to change user name', () => {
+    const text = 'Kevin'
+    const expectedAction = {
+      type: constant.CHANGE_PLAYER_NAME,
+      payload: {
+        name: text
+      }
+    }
+    expect(playerActions.changePlayerName(text)).toEqual(expectedAction)
+  })
+})
+
+//REDUCERS
+describe('REDUX REDUCERS PLAYER', () => {
+  it('should player name in state', ()=>{
+    expect(rootReducer({}, {
+      type: constant.CHANGE_PLAYER_NAME,
+      payload: {
+        name: 'Kevin'
+      }
+    })).toEqual({
+      game: {
+        ...gameState
+      },
+      player: {
+        ...playerState, ...{name: 'Kevin'}
       }
     })
   })

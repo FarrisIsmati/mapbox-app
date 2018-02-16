@@ -27,4 +27,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const Home = connect(mapStateToProps, mapDispatchToProps)(home)
 
-export default connect(mapStateToProps)(HomeContainer)
+export default HomeContainer
