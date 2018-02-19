@@ -6,9 +6,9 @@ import {
           changeMarkerCoords
         }                             from '../redux/actions/gameActions'
 
-export function draggableMarker(state) {
+export function draggableMarker(map) {
   let isDragging, isCursorOverPoint
-  let canvas = state.map.getCanvasContainer()
+  let canvas = map.getCanvasContainer()
   let geojson = {
       "type": "FeatureCollection",
       "features": [{
@@ -20,12 +20,12 @@ export function draggableMarker(state) {
       }]
   }
 
-  state.map.addSource('point', {
+  map.addSource('point', {
       "type": "geojson",
       "data": geojson
   })
 
-  state.map.addLayer({
+  map.addLayer({
       "id": "point",
       "type": "circle",
       "source": "point",
@@ -38,19 +38,19 @@ export function draggableMarker(state) {
   })
 
   // When the cursor enters a feature in the point layer, prepare for dragging.
-  state.map.on('mouseenter', 'point', function() {
+  map.on('mouseenter', 'point', function() {
     setStyle(3,'rgba(220,220,220,1)')
     isCursorOverPoint = true;
-    state.map.dragPan.disable();
+    map.dragPan.disable();
   });
 
-  state.map.on('mouseleave', 'point', function() {
+  map.on('mouseleave', 'point', function() {
       setStyle(0,'rgba(0,0,0,0)')
       isCursorOverPoint = false;
-      state.map.dragPan.enable();
+      map.dragPan.enable();
   });
 
-  state.map.on('mousedown', mouseDown.bind(this));
+  map.on('mousedown', mouseDown.bind(this));
 
   function mouseDown() {
       if (!isCursorOverPoint) return;
@@ -61,8 +61,8 @@ export function draggableMarker(state) {
       setStyle(3,'rgba(220,220,220,1)')
 
       // Mouse events
-      state.map.on('mousemove', onMove.bind(this));
-      state.map.once('mouseup', onUp);
+      map.on('mousemove', onMove.bind(this));
+      map.once('mouseup', onUp);
   }
 
   function onMove(e) {
@@ -76,7 +76,7 @@ export function draggableMarker(state) {
       // and call setData to the source layer `point` on it.
       store.dispatch(changeMarkerCoords([coords.lng, coords.lat]))
       geojson.features[0].geometry.coordinates = store.getState().game.mapMarkerCoords;
-      state.map.getSource('point').setData(geojson);
+      map.getSource('point').setData(geojson);
   }
 
   function onUp(e) {
@@ -87,11 +87,11 @@ export function draggableMarker(state) {
       setStyle(0,'rgba(0,0,0,0)')
 
       // Unbind mouse events
-      state.map.off('mousemove', onMove);
+      map.off('mousemove', onMove);
   }
 
   function setStyle(width, color) {
-    state.map.setPaintProperty('point', 'circle-stroke-width', width)
-    state.map.setPaintProperty('point', 'circle-stroke-color', color)
+    map.setPaintProperty('point', 'circle-stroke-width', width)
+    map.setPaintProperty('point', 'circle-stroke-color', color)
   }
 }

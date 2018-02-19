@@ -23,9 +23,7 @@ class MapGame extends Component {
     })
 
     map.on('load', ()=>{
-      this.setState({map: map},()=>{
-        draggableMarker(this.state)
-      })
+      draggableMarker(map)
     })
   }
 
