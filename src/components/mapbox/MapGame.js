@@ -2,7 +2,10 @@
 import React, { Component }       from 'react'
 import mapboxgl                   from 'mapbox-gl'
 import secrets                    from '../../secrets'
-import { draggableMarker }        from '../../utils/mapHelpers.js'
+import {
+          draggableMarker,
+          geocoder
+        }                         from '../../utils/mapHelpers.js'
 
 //STYLES
 import                                 'mapbox-gl/dist/mapbox-gl.css'
@@ -24,6 +27,7 @@ class MapGame extends Component {
 
     map.on('load', ()=>{
       draggableMarker(map)
+      geocoder(map, mapboxgl.accessToken)
     })
   }
 

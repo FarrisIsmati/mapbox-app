@@ -1,5 +1,6 @@
 //DEPENDENCIES
-import { store }  from "../index"
+import MapboxGeocoder                 from 'mapbox-gl-geocoder'
+import { store }                      from "../index"
 
 //REDUX
 import {
@@ -94,4 +95,15 @@ export function draggableMarker(map) {
     map.setPaintProperty('point', 'circle-stroke-width', width)
     map.setPaintProperty('point', 'circle-stroke-color', color)
   }
+}
+
+export function geocoder(map, token) {
+  const geocode = new MapboxGeocoder({
+      accessToken: token
+  })
+  map.addControl(geocode)
+  geocode.on('result', (ev) => {
+    store.dispatch(changeMarkerCoords(ev.result.geometry.coordinates))
+    map.getSource('point').setData(ev.result.geometry)
+  })
 }
