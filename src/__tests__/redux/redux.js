@@ -1,9 +1,9 @@
-import * as actions                         from '../redux/actions/gameActions'
-import * as playerActions                   from '../redux/actions/playerActions'
-import * as constant                        from '../redux/constants/constants'
-import {defaultState as gameState}          from '../redux/reducers/gameReducer'
-import {defaultState as playerState}        from '../redux/reducers/playerReducer'
-import rootReducer                          from '../redux/reducers/rootReducer'
+import * as actions                         from '../../redux/actions/gameActions'
+import * as playerActions                   from '../../redux/actions/playerActions'
+import * as constant                        from '../../redux/constants/constants'
+import {defaultState as gameState}          from '../../redux/reducers/gameReducer'
+import {defaultState as playerState}        from '../../redux/reducers/playerReducer'
+import rootReducer                          from '../../redux/reducers/rootReducer'
 
 //GAME
 

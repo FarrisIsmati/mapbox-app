@@ -1,14 +1,36 @@
 .name__holder {
-  height: 100%;
-  background: linear-gradient(to bottom, $secondaryColor -53%, $primaryColor 46%);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  height: 100%;
 
   & .input__large {
-    text-align: center;
     font-size: 9em;
+    text-align: center;
+  }
+
+  &__active {
+    background: linear-gradient(180deg, $secondaryColorAlpha, $primaryColorAlpha, rgba(0,0,0,0));
+    background-size: 400% 400%;
+    opacity: 1;
+  }
+
+  &__deactive {
+    opacity: 0;
+    transition: opacity 2.5s ease;
+    background: linear-gradient(180deg, $secondaryColorAlpha, $primaryColorAlpha, rgba(0,0,0,0));
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 2.5s ease;
+    -moz-animation: AnimationName 2.5s ease;
+    animation: AnimationName 2.5s ease;
+
+    @-webkit-keyframes AnimationName {
+        0%{background-position:30% 0%}
+        50%{background-position:40% 70%}
+        100%{background-position:70% 100%}
+    }
   }
 }
 

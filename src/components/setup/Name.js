@@ -2,9 +2,10 @@
 import React                          from 'react'
 import PropTypes                      from 'prop-types'
 
-const Name = ({player, changePlayerName}) => (
-  <div className="name__holder">
+const Name = ({player, changePlayerName, onSubmit}) => (
+  <form onSubmit={ e => {onSubmit(e,this.input)} }>
     <input
+      ref={el=> {this.input = el}}
       type="text"
       className="input__large"
       maxLength="14"
@@ -12,7 +13,7 @@ const Name = ({player, changePlayerName}) => (
       onChange={e => changePlayerName(e.target.value.toUpperCase())}
       value={player.name}
     ></input>
-  </div>
+  </form>
 )
 
 export default Name
