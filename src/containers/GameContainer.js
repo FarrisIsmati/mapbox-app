@@ -16,6 +16,7 @@ const GameContainer = () => {
   return(
     <div className="gamecontainer__holder fullheight">
       <SetupContainer />
+      <MapGame />
     </div>
   )
 }

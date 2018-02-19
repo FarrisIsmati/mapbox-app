@@ -1,4 +1,5 @@
 .name__holder {
+  pointer-events: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,13 +19,13 @@
 
   &__deactive {
     opacity: 0;
-    transition: opacity 2.5s ease;
+    transition: opacity 1.8s ease;
     background: linear-gradient(180deg, $secondaryColorAlpha, $primaryColorAlpha, rgba(0,0,0,0));
     background-size: 400% 400%;
 
-    -webkit-animation: AnimationName 2.5s ease;
-    -moz-animation: AnimationName 2.5s ease;
-    animation: AnimationName 2.5s ease;
+    -webkit-animation: AnimationName 1.8s ease;
+    -moz-animation: AnimationName 1.8s ease;
+    animation: AnimationName 1.8s ease;
 
     @-webkit-keyframes AnimationName {
         0%{background-position:30% 0%}

@@ -34,7 +34,7 @@ class SetupContainer extends Component {
     this.setState({nameHolderClass: 'name__holder name__holder__deactive'},()=>{
       setTimeout(()=>{
         self.props.changeRequestHostName()
-      }, 2000)
+      }, 1600)
     })
   }
 
