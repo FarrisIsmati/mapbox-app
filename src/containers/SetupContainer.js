@@ -7,7 +7,8 @@ import name                           from '../components/setup/Name'
 
 //REDUX
 import {
-          changePlayerName
+          changePlayerName,
+          setHostType
         }                             from '../redux/actions/playerActions'
 import {
           changeRequestHostName,
@@ -16,22 +17,36 @@ import {
 
 //Upon submitting name animate fade away and disable text area
 //requestHostName set to false in store
-const onSubmitName = (e, input, changeNameHolderClass, changeRequestHostName) => {
+//Set player to host
+const onSubmitName = (e, input, changeNameHolderClass, changeRequestHostName, setPlayerType) => {
   e.preventDefault()
   input.disabled = true
+  setHostType(true)
   changeNameHolderClass('name__holder name__holder__deactive')
   setTimeout(()=>{
     changeRequestHostName(false)
+    geocoder()
   }, 1600)
 }
 
-const SetupContainer = ({ui, changeNameHolderClass, changeRequestHostName}) => {
+const geocoder = () => {
+
+}
+
+const SetupContainer = ({ui, changeNameHolderClass, changeRequestHostName, setPlayerType}) => {
   return (
     <div className="setupcontainer__holder">
-      {console.log(ui)}
       { ui.requestHostName ?
         <div className={ui.nameHolderClass}>
-          <Name onSubmit={(e, input)=>onSubmitName(e, input, changeNameHolderClass, changeRequestHostName)} />
+          <Name
+            onSubmit={(e, input)=> onSubmitName(
+              e,
+              input,
+              changeNameHolderClass,
+              changeRequestHostName,
+              setPlayerType
+            )}
+          />
         </div> :
         null
       }
@@ -44,6 +59,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     changePlayerName: (playerName) => {
       dispatch(changePlayerName(playerName))
+    },
+    setHostType: (bool) => {
+      dispatch(setHostType(bool))
     },
     changeRequestHostName: (request) => {
       dispatch(changeRequestHostName(request))

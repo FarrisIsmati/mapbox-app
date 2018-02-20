@@ -12,12 +12,14 @@
   }
 
   &__active {
+    width: 100vw;
     background: linear-gradient(180deg, $secondaryColorAlpha, $primaryColorAlpha, rgba(0,0,0,0));
     background-size: 400% 400%;
     opacity: 1;
   }
 
   &__deactive {
+    width: 100vw;
     opacity: 0;
     transition: opacity 1.8s ease;
     background: linear-gradient(180deg, $secondaryColorAlpha, $primaryColorAlpha, rgba(0,0,0,0));

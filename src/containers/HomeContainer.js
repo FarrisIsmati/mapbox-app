@@ -7,7 +7,7 @@ import home                      from '../components/home/Home'
 
 //REDUX
 import {
-          changeGameTitle
+          changeGameTitle,
         }                             from '../redux/actions/gameActions'
 
 const HomeContainer = () => {

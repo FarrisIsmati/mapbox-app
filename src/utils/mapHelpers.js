@@ -40,55 +40,59 @@ export function draggableMarker(map) {
 
   // When the cursor enters a feature in the point layer, prepare for dragging.
   map.on('mouseenter', 'point', function() {
-    setStyle(3,'rgba(220,220,220,1)')
-    isCursorOverPoint = true;
-    map.dragPan.disable();
-  });
+    if (store.getState().player.activeHandler) {
+      setStyle(3,'rgba(220,220,220,1)')
+      isCursorOverPoint = true;
+      map.dragPan.disable();
+    }
+  })
 
   map.on('mouseleave', 'point', function() {
       setStyle(0,'rgba(0,0,0,0)')
-      isCursorOverPoint = false;
-      map.dragPan.enable();
-  });
+      isCursorOverPoint = false
+      map.dragPan.enable()
+  })
 
   map.on('mousedown', mouseDown.bind(this));
 
   function mouseDown() {
-      if (!isCursorOverPoint) return;
-      isDragging = true;
+    if (store.getState().player.activeHandler) {
+      if (!isCursorOverPoint) return
+      isDragging = true
 
       // Set a cursor indicator
-      canvas.style.cursor = 'grab';
+      canvas.style.cursor = 'grab'
       setStyle(3,'rgba(220,220,220,1)')
 
       // Mouse events
-      map.on('mousemove', onMove.bind(this));
-      map.once('mouseup', onUp);
+      map.on('mousemove', onMove.bind(this))
+      map.once('mouseup', onUp)
+    }
   }
 
   function onMove(e) {
-      if (!isDragging) return;
-      let coords = e.lngLat;
-      // Set a UI indicator for dragging.
-      canvas.style.cursor = 'grabbing';
-      setStyle(3,'rgba(220,220,220,1)')
+    if (!isDragging) return
+    let coords = e.lngLat
+    // Set a UI indicator for dragging.
+    canvas.style.cursor = 'grabbing'
+    setStyle(3,'rgba(220,220,220,1)')
 
-      // Update the Point feature in `geojson` coordinates
-      // and call setData to the source layer `point` on it.
-      store.dispatch(changeMarkerCoords([coords.lng, coords.lat]))
-      geojson.features[0].geometry.coordinates = store.getState().game.mapMarkerCoords;
-      map.getSource('point').setData(geojson);
+    // Update the Point feature in `geojson` coordinates
+    // and call setData to the source layer `point` on it.
+    store.dispatch(changeMarkerCoords([coords.lng, coords.lat]))
+    geojson.features[0].geometry.coordinates = store.getState().game.mapMarkerCoords
+    map.getSource('point').setData(geojson)
   }
 
   function onUp(e) {
-      if (!isDragging) return;
-      let coords = e.lngLat;
-      canvas.style.cursor = '';
-      isDragging = false;
-      setStyle(0,'rgba(0,0,0,0)')
+    if (!isDragging) return
+    let coords = e.lngLat
+    canvas.style.cursor = ''
+    isDragging = false
+    setStyle(0,'rgba(0,0,0,0)')
 
-      // Unbind mouse events
-      map.off('mousemove', onMove);
+    // Unbind mouse events
+    map.off('mousemove', onMove)
   }
 
   function setStyle(width, color) {
@@ -102,8 +106,11 @@ export function geocoder(map, token) {
       accessToken: token
   })
   map.addControl(geocode)
+
   geocode.on('result', (ev) => {
-    store.dispatch(changeMarkerCoords(ev.result.geometry.coordinates))
-    map.getSource('point').setData(ev.result.geometry)
+    if (store.getState().player.activeHandler) {
+      store.dispatch(changeMarkerCoords(ev.result.geometry.coordinates))
+      map.getSource('point').setData(ev.result.geometry)
+    }
   })
 }

@@ -22,6 +22,7 @@ class Home extends Component {
     this.input.focus()
     let selectionStart = this.input.value.length
     this.input.setSelectionRange(selectionStart, selectionStart)
+    this.props.setPlayerType(true)
   }
 
   render() {
