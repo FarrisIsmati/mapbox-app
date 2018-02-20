@@ -1,13 +1,31 @@
+import Update                               from 'immutability-helper';
+import * as constant                        from '../../redux/constants/constants'
+
+//ACTION IMPORTS
 import * as actions                         from '../../redux/actions/gameActions'
 import * as playerActions                   from '../../redux/actions/playerActions'
-import * as constant                        from '../../redux/constants/constants'
+import * as uiActions                       from '../../redux/actions/uiActions'
+
+//REDUCER IMPORTS
 import {defaultState as gameState}          from '../../redux/reducers/gameReducer'
 import {defaultState as playerState}        from '../../redux/reducers/playerReducer'
+import {defaultState as uiState}            from '../../redux/reducers/uiReducer'
 import rootReducer                          from '../../redux/reducers/rootReducer'
 
-//GAME
+let state = {
+  game: {
+    ...gameState
+  },
+  ui: {
+    ...uiState
+  },
+  player: {
+    ...playerState
+  }
+}
 
-//ACTIONS
+//TESTS
+//GAME ACTIONS/REDUCERS
 describe('REDUX ACTIONS GAME', () => {
   it('should create an action to change game title', () => {
     const text = 'test'
@@ -35,14 +53,7 @@ describe('REDUX ACTIONS GAME', () => {
 //REDUCERS
 describe('REDUX REDUCERS GAME', () => {
   it('should return the initial state', ()=>{
-    expect(rootReducer(undefined, {})).toEqual({
-      game: {
-        ...gameState
-      },
-      player: {
-        ...playerState
-      }
-    })
+    expect(rootReducer(undefined, {})).toEqual(state)
   })
 
   it('should update title in state', ()=>{
@@ -51,14 +62,13 @@ describe('REDUX REDUCERS GAME', () => {
       payload: {
         title: 'test1'
       }
-    })).toEqual({
-      game: {
-        ...gameState, ...{title: 'test1'}
-      },
-      player: {
-        ...playerState
-      }
-    })
+    })).toEqual(
+      Update(state,
+        {game:
+          { title: { $set: 'test1'}}
+        }
+      )
+    )
   })
 
   it('should update coordinates in state', ()=>{
@@ -68,20 +78,17 @@ describe('REDUX REDUCERS GAME', () => {
       payload: {
         mapMarkerCoords: coords
       }
-    })).toEqual({
-      game: {
-        ...gameState, ...{mapMarkerCoords: coords}
-      },
-      player: {
-        ...playerState
-      }
-    })
+    })).toEqual(
+      Update(state,
+        {game:
+          { mapMarkerCoords: { $set: coords}}
+        }
+      )
+    )
   })
 })
 
-//PLAYER
-
-//ACTIONS
+//PLAYER ACTIONS/REDUCERS
 describe('REDUX ACTIONS PLAYER', () => {
   it('should create an action to change user name', () => {
     const text = 'Kevin'
@@ -97,19 +104,78 @@ describe('REDUX ACTIONS PLAYER', () => {
 
 //REDUCERS
 describe('REDUX REDUCERS PLAYER', () => {
-  it('should player name in state', ()=>{
+  it('should change player name in state', ()=>{
+    const name = 'Kevin'
     expect(rootReducer({}, {
       type: constant.CHANGE_PLAYER_NAME,
       payload: {
-        name: 'Kevin'
+        name: name
       }
-    })).toEqual({
-      game: {
-        ...gameState
-      },
-      player: {
-        ...playerState, ...{name: 'Kevin'}
+    })).toEqual(
+      Update(state,
+        {player:
+          { name: { $set: name}}
+        }
+      )
+    )
+  })
+})
+
+//UI ACTIONS/REDUCERS
+describe('REDUX ACTIONS UI', () => {
+  it('should create an action to change requestHostName', () => {
+    const request = false
+    const expectedAction = {
+      type: constant.CHANGE_REQUEST_HOST_NAME,
+      payload: {
+        requestHostName: request
       }
-    })
+    }
+    expect(uiActions.changeRequestHostName(request)).toEqual(expectedAction)
+  })
+
+  it('should create an action to change name holder class', () => {
+    const className = 'new class'
+    const expectedAction = {
+      type: constant.CHANGE_NAME_HOLDER_CLASS,
+      payload: {
+        nameHolderClass: className
+      }
+    }
+    expect(uiActions.changeNameHolderClass(className)).toEqual(expectedAction)
+  })
+})
+
+//REDUCERS
+describe('REDUX REDUCERS UI', () => {
+  it('should change requestHostName to false in state', ()=>{
+    expect(rootReducer({}, {
+      type: constant.CHANGE_REQUEST_HOST_NAME,
+      payload: {
+        requestHostName: false
+      }
+    })).toEqual(
+      Update(state,
+        {ui:
+          { requestHostName: { $set: false}}
+        }
+      )
+    )
+  })
+
+  it('should change name holder class name to name__holder name__holder__deactive', ()=>{
+    const className = 'name__holder name__holder__deactive'
+    expect(rootReducer({}, {
+      type: constant.CHANGE_NAME_HOLDER_CLASS,
+      payload: {
+        nameHolderClass: className
+      }
+    })).toEqual(
+      Update(state,
+        {ui:
+          { nameHolderClass: { $set: className}}
+        }
+      )
+    )
   })
 })
