@@ -7,7 +7,7 @@ const Name = ({player, changePlayerName, onSubmit}) => (
     <input
       ref={el=> {this.input = el}}
       type="text"
-      className="input__large"
+      className="input"
       maxLength="14"
       placeholder="YOUR NAME"
       onChange={e => changePlayerName(e.target.value.toUpperCase())}
@@ -17,7 +17,7 @@ const Name = ({player, changePlayerName, onSubmit}) => (
 )
 
 Name.propTypes = {
-  player: PropTypes.string.isRequired,
+  player: PropTypes.object.isRequired,
   changePlayerName: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 }

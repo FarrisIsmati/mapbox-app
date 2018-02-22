@@ -4,7 +4,7 @@ import { connect }                    from 'react-redux'
 
 //COMPONENTS
 import name                           from '../components/setup/Name'
-import Config                         from '../components/setup/Config'
+import config                         from '../components/setup/Config'
 
 
 //REDUX
@@ -16,6 +16,9 @@ import {
           changeRequestHostName,
           changeNameHolderClass
         }                             from '../redux/actions/uiActions'
+import {
+          changeSetMarkerRadius
+        }                             from '../redux/actions/gameActions'
 
 //Upon submitting name animate fade away and disable text area
 //requestHostName set to false in store
@@ -65,10 +68,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeNameHolderClass: (className) => {
       dispatch(changeNameHolderClass(className))
+    },
+    changeSetMarkerRadius: (radius) => {
+      dispatch(changeSetMarkerRadius(radius))
     }
   }
 }
 
+const Config = connect(mapStateToProps, mapDispatchToProps)(config)
 const Name = connect(mapStateToProps, mapDispatchToProps)(name)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SetupContainer)

@@ -11,7 +11,6 @@ import {
           changeMarkerCoords
         }                             from '../redux/actions/gameActions'
 
-
 const GameContainer = () => {
   return(
     <div className="gamecontainer__holder fullheight">

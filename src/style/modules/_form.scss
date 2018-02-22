@@ -1,4 +1,4 @@
-.input__large {
+.input {
   background-color: rgba(0,0,0,0);
   outline: none;
   border: none;
@@ -28,13 +28,15 @@
       -2px 0px 1px #CB2354;
     transition: all .3s;
   }
+}
 
-
+.input__medium {
+  font-size: $medium-font-size;
 }
 
 //MEDIA QUERY
 @media (max-width: 768px) {
-  .input__large {
+  .input {
     font-size: 4.5em;
   }
 }
