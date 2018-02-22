@@ -1,6 +1,7 @@
 import {
         CHANGE_GAME_TITLE,
         CHANGE_MARKER_COORDS,
+        CHANGE_SET_MARKER_COORDS,
         CHANGE_SET_MARKER_RADIUS
 }                            from "../constants/constants"
 
@@ -20,6 +21,16 @@ export function changeMarkerCoords(coords){
     type: CHANGE_MARKER_COORDS,
     payload: {
       mapMarkerCoords: coords
+    }
+  }
+}
+
+//Changes the set coordinates of the game
+export function changeSetMarkerCoords(coords){
+  return {
+    type: CHANGE_SET_MARKER_COORDS,
+    payload: {
+      setMarkerCoords: coords
     }
   }
 }

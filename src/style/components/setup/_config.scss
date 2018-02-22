@@ -31,7 +31,7 @@
   &__start {
     display: flex;
 
-    & h1 {
+    & > h1 {
       color: #FFF;
       text-shadow:
         2px 1px 1px #FFA856,

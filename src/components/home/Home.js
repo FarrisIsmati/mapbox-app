@@ -41,7 +41,7 @@ class Home extends Component {
               ></input>
             <h1 className="noselect">WHERE IS IT?</h1>
             </div>
-              <Button1 name={'START'} link={'game'}></Button1>
+              <Button1 name={'START'} link={'game'} className={'button__one button__one__active'}></Button1>
           </div>
         </div>
 

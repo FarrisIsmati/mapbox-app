@@ -15,10 +15,12 @@ import {
 import {
           changeRequestHostName,
           changeNameHolderClass,
-          changeSetupConfigClass
+          changeSetupConfigClass,
+          changeSetupConfigSetBTNClass
         }                             from '../redux/actions/uiActions'
 import {
-          changeSetMarkerRadius
+          changeSetMarkerRadius,
+          changeSetMarkerCoords
         }                             from '../redux/actions/gameActions'
 
 //Upon submitting name animate fade away and disable text area
@@ -76,6 +78,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeSetupConfigClass: (className) => {
       dispatch(changeSetupConfigClass(className))
+    },
+    changeSetMarkerCoords: (coords) => {
+      dispatch(changeSetMarkerCoords(coords))
+    },
+    changeSetupConfigSetBTNClass: (className) => {
+      dispatch(changeSetupConfigSetBTNClass(className))
     }
   }
 }

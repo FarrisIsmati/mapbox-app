@@ -2,35 +2,18 @@
 import React                          from 'react'
 import PropTypes                      from 'prop-types'
 
-const checkValue = (e, onChange) => {
-  if (!isNaN(e.target.value)) {
-    onChange(e.target.value)
-  }
-}
-
-const Input1 = ({type, className, maxLength, placeholder, onSubmit, onChange, numeric, value, size}) => (
+const Input1 = ({type, className, maxLength, placeholder, onSubmit, onChange, value, size}) => (
   <form onSubmit={ e => {onSubmit(e,this.input)} }>
-    { numeric ?
       <input
         ref={el=> {this.input = el}}
         type={type}
         className={className}
         maxLength={maxLength}
-        onChange={(e)=>{checkValue(e, onChange)}}
-        placeholder={placeholder}
-        value={value}
-        size={size}
-      ></input> :
-      <input
-        ref={el=> {this.input = el}}
-        type={type}
-        className={className}
-        maxLength={maxLength}
+        onChange={onChange}
         placeholder={placeholder}
         value={value}
         size={size}
       ></input>
-    }
   </form>
 )
 
