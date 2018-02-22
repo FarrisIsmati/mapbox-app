@@ -4,6 +4,8 @@ import { connect }                    from 'react-redux'
 
 //COMPONENTS
 import name                           from '../components/setup/Name'
+import Config                         from '../components/setup/Config'
+
 
 //REDUX
 import {
@@ -18,22 +20,17 @@ import {
 //Upon submitting name animate fade away and disable text area
 //requestHostName set to false in store
 //Set player to host
-const onSubmitName = (e, input, changeNameHolderClass, changeRequestHostName, setPlayerType) => {
+const onSubmitName = (e, input, changeNameHolderClass, changeRequestHostName, setHostType) => {
   e.preventDefault()
   input.disabled = true
   setHostType(true)
   changeNameHolderClass('name__holder name__holder__deactive')
   setTimeout(()=>{
     changeRequestHostName(false)
-    geocoder()
   }, 1600)
 }
 
-const geocoder = () => {
-
-}
-
-const SetupContainer = ({ui, changeNameHolderClass, changeRequestHostName, setPlayerType}) => {
+const SetupContainer = ({ui, changeNameHolderClass, changeRequestHostName, setHostType}) => {
   return (
     <div className="setupcontainer__holder">
       { ui.requestHostName ?
@@ -44,11 +41,11 @@ const SetupContainer = ({ui, changeNameHolderClass, changeRequestHostName, setPl
               input,
               changeNameHolderClass,
               changeRequestHostName,
-              setPlayerType
+              setHostType
             )}
           />
         </div> :
-        null
+        <Config />
       }
     </div>
   )

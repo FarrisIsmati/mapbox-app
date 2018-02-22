@@ -39,6 +39,7 @@ export function draggableMarker(map) {
   })
 
   // When the cursor enters a feature in the point layer, prepare for dragging.
+  //If you are not active handler you cannot move the point
   map.on('mouseenter', 'point', function() {
     if (store.getState().player.activeHandler) {
       setStyle(3,'rgba(220,220,220,1)')
@@ -55,6 +56,7 @@ export function draggableMarker(map) {
 
   map.on('mousedown', mouseDown.bind(this));
 
+  //If you are not active handler you cannot move the point
   function mouseDown() {
     if (store.getState().player.activeHandler) {
       if (!isCursorOverPoint) return
@@ -107,6 +109,7 @@ export function geocoder(map, token) {
   })
   map.addControl(geocode)
 
+  //If you are not active handler you cannot change the value of the point via geocoder
   geocode.on('result', (ev) => {
     if (store.getState().player.activeHandler) {
       store.dispatch(changeMarkerCoords(ev.result.geometry.coordinates))

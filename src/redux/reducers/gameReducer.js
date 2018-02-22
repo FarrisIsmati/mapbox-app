@@ -6,7 +6,7 @@ import {
 //Exported only for testing purposes
 export const defaultState = {
   title: '@%#!,',
-  mapMarkerCoords: [77, 38]
+  mapMarkerCoords: [-77, 38.8]
 }
 
 export function gameReducer(state = defaultState, action) {

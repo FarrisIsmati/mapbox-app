@@ -17,11 +17,12 @@ class MapGame extends Component {
 
   componentDidMount() {
     mapboxgl.accessToken = secrets.mapboxPK
+
     let map = new mapboxgl.Map({
         container: this.mapContainer,
         style: 'mapbox://styles/farrisismati/cjdnh7yjh05hs2snz74ww9ubo',
-        center: [0,0],
-        zoom: 2,
+        center: this.props.game.mapMarkerCoords,
+        zoom: 3,
         interactive: true
     })
 

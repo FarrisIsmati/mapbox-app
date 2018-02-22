@@ -16,4 +16,10 @@ const Name = ({player, changePlayerName, onSubmit}) => (
   </form>
 )
 
+Name.propTypes = {
+  player: PropTypes.string.isRequired,
+  changePlayerName: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+}
+
 export default Name
