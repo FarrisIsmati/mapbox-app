@@ -15,28 +15,18 @@
     -2px 0px 1px #CB2354;
 
   &::placeholder {
-    color: rgba(255,255,255,.4);
+    color: rgba(255,255,255,.2);
     text-shadow: none;
     transition: all .1s;
   }
 
   &:hover::placeholder, &:focus::placeholder{
-    color: rgba(255,255,255,1);
-    text-shadow:
-      2px 1px 1px #FFA856,
-      0px -1px 2px rgba(240, 97, 139,.5),
-      -2px 0px 1px #CB2354;
+    color: rgba(255,255,255,.6);
+    text-shadow: none;
     transition: all .3s;
   }
 }
 
 .input__medium {
   font-size: $medium-font-size;
-}
-
-//MEDIA QUERY
-@media (max-width: 768px) {
-  .input {
-    font-size: 4.5em;
-  }
 }

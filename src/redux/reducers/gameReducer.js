@@ -8,7 +8,7 @@ import {
 export const defaultState = {
   title: '@%#!,',
   mapMarkerCoords: [-77, 38.8],
-  setMarkerRadius: 0
+  setMarkerRadius: '0'
 }
 
 export function gameReducer(state = defaultState, action) {

@@ -29,7 +29,7 @@ export function changeSetMarkerRadius(radius){
   return {
     type: CHANGE_SET_MARKER_RADIUS,
     payload: {
-      setMarkerRadius: parseInt(radius)
+      setMarkerRadius: radius
     }
   }
 }

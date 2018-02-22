@@ -8,7 +8,7 @@ const checkValue = (e, onChange) => {
   }
 }
 
-const Input1 = ({type, className, maxLength, placeHolder, onSubmit, onChange, numeric}) => (
+const Input1 = ({type, className, maxLength, placeholder, onSubmit, onChange, numeric, value, size}) => (
   <form onSubmit={ e => {onSubmit(e,this.input)} }>
     { numeric ?
       <input
@@ -17,14 +17,18 @@ const Input1 = ({type, className, maxLength, placeHolder, onSubmit, onChange, nu
         className={className}
         maxLength={maxLength}
         onChange={(e)=>{checkValue(e, onChange)}}
-        placeholder={placeHolder}
+        placeholder={placeholder}
+        value={value}
+        size={size}
       ></input> :
       <input
         ref={el=> {this.input = el}}
         type={type}
         className={className}
         maxLength={maxLength}
-        placeholder={placeHolder}
+        placeholder={placeholder}
+        value={value}
+        size={size}
       ></input>
     }
   </form>
@@ -34,10 +38,12 @@ Input1.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
   maxLength: PropTypes.string,
-  placeHolder: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
-  numeric: PropTypes.bool
+  numeric: PropTypes.bool,
+  value: PropTypes.string,
+  size: PropTypes.string
 }
 
 Input1.defaultProps = {

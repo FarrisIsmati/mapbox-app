@@ -12,17 +12,48 @@
   display: flex;
   width: 100%;
   margin-bottom: 2%;
+  padding: 0 4%;
 }
 
 .setupconfig__grid {
   flex: 1;
 
-  &__center {
+  &__start {
     display: flex;
+
+    & h1 {
+      color: #FFF;
+      text-shadow:
+        2px 1px 1px #FFA856,
+        0px -1px 2px rgba(240, 97, 139,.5),
+        -2px 0px 1px #CB2354;
+    }
+
+    & #miles {
+      margin-left: 10px;
+    }
+
+    & .button__one {
+      margin-left: 15px;
+    }
+
+    & .input {
+      background-color: $geocoderAlpha;
+      border-radius: 4px;
+      text-align: center;
+    }
   }
 
   &__end {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+//MEDIA QUERY
+@media (max-width: 768px) {
+  .setupconfig__grid {
+    flex: auto;
+
   }
 }
