@@ -31,7 +31,7 @@ export function draggableMarker(map) {
       "type": "circle",
       "source": "point",
       "paint": {
-        "circle-radius": 10,
+        "circle-radius": 12,
         "circle-stroke-width": 0,
         "circle-stroke-color": "rgba(0,0,0,0)",
         "circle-color": "#FFF"

@@ -14,7 +14,8 @@ import {
         }                             from '../redux/actions/playerActions'
 import {
           changeRequestHostName,
-          changeNameHolderClass
+          changeNameHolderClass,
+          changeSetupConfigClass
         }                             from '../redux/actions/uiActions'
 import {
           changeSetMarkerRadius
@@ -44,7 +45,8 @@ const SetupContainer = ({ui, changeNameHolderClass, changeRequestHostName, setHo
               input,
               changeNameHolderClass,
               changeRequestHostName,
-              setHostType
+              setHostType,
+              changeSetupConfigClass
             )}
           />
         </div> :
@@ -71,6 +73,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeSetMarkerRadius: (radius) => {
       dispatch(changeSetMarkerRadius(radius))
+    },
+    changeSetupConfigClass: (className) => {
+      dispatch(changeSetupConfigClass(className))
     }
   }
 }
