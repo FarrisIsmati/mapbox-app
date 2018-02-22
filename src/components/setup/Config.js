@@ -26,10 +26,8 @@ class Config extends Component {
 
   //Sets the current marker location and radius in the store
   setMarker() {
-    if (this.props.ui.setupConfigSetBTNClass === 'button__one button__one__active') {
-      this.props.changeSetMarkerRadius(this.state.markerRadius)
-      this.props.changeSetMarkerCoords(this.props.game.mapMarkerCoords)
-    }
+    this.props.changeSetMarkerRadius(this.state.markerRadius)
+    this.props.changeSetMarkerCoords(this.props.game.mapMarkerCoords)
   }
 
   componentDidMount() {
@@ -38,21 +36,6 @@ class Config extends Component {
     setTimeout(()=>{
       self.props.changeSetupConfigClass("setupconfig__holder setupconfig__holder__active")
     }, 100)
-  }
-
-  componentDidUpdate() {
-    //Update set marker class pending value
-    if (parseInt(this.state.markerRadius) > 0 && this.props.ui.setupConfigSetBTNClass !== 'button__one button__one__active') {
-      this.props.changeSetupConfigSetBTNClass('button__one button__one__active')
-    }
-
-    if (parseInt(this.state.markerRadius) <= 0 && this.props.ui.setupConfigSetBTNClass !== 'button__one button__one__deactive') {
-      this.props.changeSetupConfigSetBTNClass('button__one button__one__deactive')
-    }
-
-    if (!this.state.markerRadius && this.props.ui.setupConfigSetBTNClass !== 'button__one button__one__deactive') {
-      this.props.changeSetupConfigSetBTNClass('button__one button__one__deactive')
-    }
   }
 
   render(){
@@ -65,22 +48,33 @@ class Config extends Component {
               maxLength="4"
               className="input input__medium"
               value={this.state.markerRadius}
-              placeholder='10'
+              placeholder='0'
               size="4"
             />
             <h1 id="miles">mi</h1>
+            { parseInt(this.state.markerRadius) > 0 ?
+              <Button1
+                name={"Set"}
+                click={()=>{this.setMarker()}}
+                className='button__one button__one__active'
+              /> :
             <Button1
               name={"Set"}
-              click={()=>{this.setMarker()}}
-              className={this.props.ui.setupConfigSetBTNClass}
-            />
+              className='button__one button__one__deactive'
+            /> }
           </div>
           <div className="setupconfig__grid setupconfig__grid__end">
-            <Button1
-              name={"Start"}
-              click={()=>{console.log('clicked')}}
-              className={this.props.ui.setupConfigStartBTNClass}
-            />
+            { this.props.game.setMarkerCoords[0] && this.props.game.setMarkerRadius > 0 ?
+              <Button1
+                name={"Start"}
+                click={()=>{console.log('clicked')}}
+                className='button__one button__one__active'
+              /> :
+              <Button1
+                name={"Start"}
+                className='button__one button__one__deactive'
+              />
+            }
           </div>
         </div>
       </div>

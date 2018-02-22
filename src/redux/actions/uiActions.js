@@ -36,23 +36,3 @@ export function changeSetupConfigClass(className){
     }
   }
 }
-
-//Changes class name of config setup btn
-export function changeSetupConfigSetBTNClass(className){
-  return {
-    type: CHANGE_SETUP_CONFIG_SETBTN_CLASS,
-    payload: {
-      setupConfigSetBTNClass: className
-    }
-  }
-}
-
-//Changes class name of config start btn
-export function changeSetupConfigStartBTNClass(className){
-  return {
-    type: CHANGE_SETUP_CONFIG_STARTBTN_CLASS,
-    payload: {
-      setupConfigStartBTNClass: className
-    }
-  }
-}

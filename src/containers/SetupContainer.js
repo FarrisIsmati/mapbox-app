@@ -15,8 +15,7 @@ import {
 import {
           changeRequestHostName,
           changeNameHolderClass,
-          changeSetupConfigClass,
-          changeSetupConfigSetBTNClass
+          changeSetupConfigClass
         }                             from '../redux/actions/uiActions'
 import {
           changeSetMarkerRadius,
@@ -81,9 +80,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeSetMarkerCoords: (coords) => {
       dispatch(changeSetMarkerCoords(coords))
-    },
-    changeSetupConfigSetBTNClass: (className) => {
-      dispatch(changeSetupConfigSetBTNClass(className))
     }
   }
 }
