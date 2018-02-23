@@ -3,8 +3,8 @@ import React                          from 'react'
 import { connect }                    from 'react-redux'
 
 //COMPONENTS
-import name                           from '../components/setup/Name'
 import config                         from '../components/setup/Config'
+import Input1                         from '../components/common/inputs/Input1'
 
 
 //REDUX
@@ -35,12 +35,12 @@ const onSubmitName = (e, input, changeNameHolderClass, changeRequestHostName, se
   }, 1600)
 }
 
-const SetupContainer = ({ui, changeNameHolderClass, changeRequestHostName, setHostType}) => {
+const SetupContainer = ({ui, player, changeNameHolderClass, changeRequestHostName, changePlayerName, setHostType}) => {
   return (
     <div className="setupcontainer__holder">
       { ui.requestHostName ?
         <div className={ui.nameHolderClass}>
-          <Name
+          <Input1
             onSubmit={(e, input)=> onSubmitName(
               e,
               input,
@@ -49,6 +49,11 @@ const SetupContainer = ({ui, changeNameHolderClass, changeRequestHostName, setHo
               setHostType,
               changeSetupConfigClass
             )}
+            className={"input"}
+            maxLength={"14"}
+            placeholder={"YOUR NAME"}
+            onChange={e => changePlayerName(e.target.value.toUpperCase())}
+            value={player.name}
           />
         </div> :
         <Config />
@@ -85,6 +90,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Config = connect(mapStateToProps, mapDispatchToProps)(config)
-const Name = connect(mapStateToProps, mapDispatchToProps)(name)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SetupContainer)

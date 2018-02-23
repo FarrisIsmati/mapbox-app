@@ -9,7 +9,7 @@ import {
 export const defaultState = {
   title: '@%#!,',
   mapMarkerCoords: [-77, 38.8],
-  setMarkerCoords: [null,null],
+  setMarkerCoords: [-77, 38.8],
   setMarkerRadius: '0'
 }
 

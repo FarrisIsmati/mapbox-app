@@ -7,6 +7,66 @@ import {
           changeMarkerCoords
         }                             from '../redux/actions/gameActions'
 
+//Sets Circle Radius to units of Kilometers
+export function createGeoJSONCircle(center, radiusInKm, points){
+    if(!points) points = 64;
+
+    let coords = {
+        latitude: center[1],
+        longitude: center[0]
+    };
+
+    let km = radiusInKm
+
+    let ret = []
+    let distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180))
+    let distanceY = km/110.574
+
+    let theta, x, y
+    for(var i=0; i<points; i++) {
+        theta = (i/points)*(2*Math.PI)
+        x = distanceX*Math.cos(theta)
+        y = distanceY*Math.sin(theta)
+
+        ret.push([coords.longitude+x, coords.latitude+y])
+    }
+    ret.push(ret[0])
+
+    return {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "radius" : radiusInKm,
+                    "originalCoords" : [center[0], center[1]],
+                    "coordinates": [ret]
+                }
+            }]
+        }
+    }
+}
+
+//Creates the initial circle radius on the map
+export function circleRadius(map) {
+  //Radius Circle
+  map.addSource("markedRadius", createGeoJSONCircle(store.getState().game.setMarkerCoords, 0))
+
+  map.addLayer({
+      "id": "markedRadius",
+      "type": "fill",
+      "source": "markedRadius",
+      "layout": {},
+      "paint": {
+          "fill-color": "#FFA856",
+          "fill-opacity": 0.4
+      }
+  })
+}
+
+//Sets up a draggable marker for the map
 export function draggableMarker(map) {
   let isDragging, isCursorOverPoint
   let canvas = map.getCanvasContainer()
@@ -103,6 +163,7 @@ export function draggableMarker(map) {
   }
 }
 
+//Loads the geocoder on the map
 export function geocoder(map, token) {
   const geocode = new MapboxGeocoder({
       accessToken: token
@@ -116,4 +177,30 @@ export function geocoder(map, token) {
       map.getSource('point').setData(ev.result.geometry)
     }
   })
+}
+
+//Checks if every element in an array matches
+const coordsEqual = (coord1, coord2) => {
+    if(coord1.length !== coord2.length)
+        return false
+    for (let i = coord1.length; i--;) {
+        if(coord1[i] !== coord2[i]){
+          return false
+        }
+    }
+    return true
+}
+
+//Update the set map marker geojson by comparing the current geojson location & radius to the redux store location and radius
+export function setRadiusOnUpdate(map, game) {
+  if (map.getSource('markedRadius')){
+    let newCoords = game.setMarkerCoords
+    let setCoords = map.getSource('markedRadius')._data.features[0].geometry.originalCoords
+    let setRadius = map.getSource('markedRadius')._data.features[0].geometry.radius
+    if (!coordsEqual(newCoords,setCoords) || game.setMarkerRadius != setRadius){
+      let geojson = createGeoJSONCircle(game.setMarkerCoords, game.setMarkerRadius).data
+      //I'm unsure if I'm mutating state with this line
+      map.getSource('markedRadius').setData(geojson)
+    }
+  }
 }

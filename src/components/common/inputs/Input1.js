@@ -24,15 +24,13 @@ Input1.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
-  numeric: PropTypes.bool,
   value: PropTypes.string,
   size: PropTypes.string
 }
 
 Input1.defaultProps = {
   type: 'text',
-  className: 'input',
-  numeric: false
+  className: 'input'
 }
 
 export default Input1

@@ -4,7 +4,11 @@ import mapboxgl                   from 'mapbox-gl'
 import secrets                    from '../../secrets'
 import {
           draggableMarker,
-          geocoder
+          geocoder,
+          circleRadius,
+          coordsEqual,
+          createGeoJSONCircle,
+          setRadiusOnUpdate
         }                         from '../../utils/mapHelpers.js'
 
 //STYLES
@@ -13,6 +17,10 @@ import                                 'mapbox-gl/dist/mapbox-gl.css'
 class MapGame extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      mapLoaded: false
+    }
   }
 
   componentDidMount() {
@@ -27,13 +35,22 @@ class MapGame extends Component {
     })
 
     map.on('load', ()=>{
-      draggableMarker(map)
-      geocoder(map, mapboxgl.accessToken)
+      this.setState({map: map, mapLoaded: true},()=>{
+        draggableMarker(this.state.map)
+        geocoder(this.state.map, mapboxgl.accessToken)
+        circleRadius(this.state.map)
+      })
     })
   }
 
+  componentDidUpdate() {
+    if (this.state.mapLoaded) {
+      setRadiusOnUpdate(this.state.map, this.props.game)
+    }
+  }
+
   componentWillUnmount() {
-    this.map.remove()
+    this.state.map.remove()
   }
 
   render(){

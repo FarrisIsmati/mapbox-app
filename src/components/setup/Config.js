@@ -42,6 +42,7 @@ class Config extends Component {
     return(
       <div className={this.props.ui.setupConfigClass}>
         <div className="setupconfig">
+
           <div className="setupconfig__grid setupconfig__grid__start">
             <Input1
               onChange={(e)=>this.setMarkerRadius(e)}
@@ -51,7 +52,7 @@ class Config extends Component {
               placeholder='0'
               size="4"
             />
-            <h1 id="miles">mi</h1>
+          <h1 id="miles">km</h1>
             { parseInt(this.state.markerRadius) > 0 ?
               <Button1
                 name={"Set"}
@@ -63,6 +64,7 @@ class Config extends Component {
               className='button__one button__one__deactive'
             /> }
           </div>
+
           <div className="setupconfig__grid setupconfig__grid__end">
             { this.props.game.setMarkerCoords[0] && this.props.game.setMarkerRadius > 0 ?
               <Button1
@@ -76,6 +78,7 @@ class Config extends Component {
               />
             }
           </div>
+
         </div>
       </div>
     )
