@@ -4,10 +4,9 @@ import ReactDOM                 from 'react-dom'
 import registerServiceWorker    from './registerServiceWorker'
 import thunkMiddleware          from 'redux-thunk'
 import { createLogger }         from 'redux-logger'
-import {
-        createStore,
-        applyMiddleware
-      }                         from 'redux'
+import {  createStore,
+          applyMiddleware
+        }                       from 'redux'
 
 //COMPONENTS
 import App                      from './components/structure/App'

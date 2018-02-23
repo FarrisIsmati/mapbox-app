@@ -7,7 +7,7 @@ import { BrowserRouter as Router,
        }                              from 'react-router-dom'
 
 //COMPONENTS
-import HomeContainer                 from '../../containers/HomeContainer'
+import HomeContainer                  from '../../containers/HomeContainer'
 import GameContainer                  from '../../containers/GameContainer'
 
 const App = ({ store }) => (

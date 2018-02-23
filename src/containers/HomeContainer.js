@@ -3,12 +3,10 @@ import React                          from 'react'
 import { connect }                    from 'react-redux'
 
 //COMPONENTS
-import home                      from '../components/home/Home'
+import home                           from '../components/home/Home'
 
 //REDUX
-import {
-          changeGameTitle,
-        }                             from '../redux/actions/gameActions'
+import { changeGameTitle }            from '../redux/actions/gameActions'
 
 const HomeContainer = () => {
   return(
