@@ -61,7 +61,7 @@ class MapBackground extends Component {
   }
 
   componentWillUnmount() {
-    this.map.remove()
+    this.state.map.remove()
   }
 
   render(){

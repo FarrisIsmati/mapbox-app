@@ -1,15 +1,17 @@
 //DEPENDENCIES
 import React                          from 'react'
 import PropTypes                      from 'prop-types'
+import { Link }                       from 'react-router-dom'
+
 
 //If the button is a link provide a link, you can also provide a function
 const Button1 = ({name, link, click, className}) => (
   <div>
     {
       link ?
-        <a href={link}>
+        <Link to={link}>
           <h1 className={className} onClick={click} value={name}>{name}</h1>
-        </a> :
+        </Link> :
         <h1 className={className} onClick={click} value={name}>{name}</h1>
     }
   </div>

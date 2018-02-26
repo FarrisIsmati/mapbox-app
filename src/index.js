@@ -9,7 +9,7 @@ import {  createStore,
         }                       from 'redux'
 
 //COMPONENTS
-import App                      from './components/structure/App'
+import Root                     from './components/structure/Root'
 
 //REDUX
 import rootReducer              from './redux/reducers/rootReducer'
@@ -32,7 +32,7 @@ store.subscribe(()=>{
 })
 
 ReactDOM.render(
-  <App store={store}/>
+  <Root store={store}/>
   , document.getElementById('root')
 )
 

@@ -36,7 +36,7 @@ class MapGame extends Component {
       this.setState({map: map, mapLoaded: true},()=>{
         draggableMarker(this.state.map)
         geocoder(this.state.map, mapboxgl.accessToken)
-        
+
         //Set so circle radius only shows up if your the host
         circleRadius(this.state.map)
       })
@@ -51,7 +51,10 @@ class MapGame extends Component {
   }
 
   componentWillUnmount() {
-    this.state.map.remove()
+    //Necessary for redirects because map wont load before a redirect happens
+    if (this.state.map){
+      this.state.map.remove()
+    }
   }
 
   render(){

@@ -1,7 +1,8 @@
 import {
         CHANGE_PLAYER_NAME,
         SET_HOST_TYPE,
-        CHANGE_ACTIVE_HANDLER
+        CHANGE_ACTIVE_HANDLER,
+        SET_PLAYER_IP
 }                            from "../constants/constants"
 
 
@@ -31,6 +32,15 @@ export function changeActiveHandler(bool){
     type: CHANGE_ACTIVE_HANDLER,
     payload: {
       activeHandler: bool
+    }
+  }
+}
+
+export function setPlayerIP(ip) {
+  return {
+    type: SET_PLAYER_IP,
+    payload: {
+      ip: ip
     }
   }
 }

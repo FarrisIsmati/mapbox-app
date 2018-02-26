@@ -8,23 +8,31 @@ import home                           from '../components/home/Home'
 
 //REDUX
 import { changeGameTitle }            from '../redux/actions/gameActions'
+import { setHostType,
+         setPlayerIP
+       }                              from '../redux/actions/playerActions'
 
-const startGame = (game,player) => {
+//Upon Starting the game set host to active
+const startGame = (game,player,history,setPlayerIP,setHostType) => {
   axios.post(`http://localhost:3001/game`, {
     title: game.title,
     completed: game.completed,
-    active: game.active
+    active: game.active,
+    host: {
+      active: true
+    }
   })
   .then((response) => {
-    let gameId = response.data._id
-    //Redirect via history push
+    setPlayerIP(response.data.host.ip)
+    setHostType(true)
+    history.push('/game/' + response.data._id)
   })
   .catch((err) => {console.log(err)})
 }
 
-const HomeContainer = () => {
+const HomeContainer = ({history}) => {
   return(
-    <Home startGame={startGame} />
+    <Home history={history} startGame={startGame} />
   )
 }
 
@@ -33,6 +41,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     changeGameTitle: (title) => {
       dispatch(changeGameTitle(title))
+    },
+    setHostType: (bool) => {
+      dispatch(setHostType(bool))
+    },
+    setPlayerIP: (ip) => {
+      dispatch(setPlayerIP(ip))
     }
   }
 }

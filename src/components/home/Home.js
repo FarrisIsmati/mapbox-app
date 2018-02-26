@@ -6,7 +6,7 @@ import MapBackground                  from '../mapbox/MapBackground'
 import Button1                        from '../common/buttons/Button1'
 
 //Landing page
-const Home = ({game, player, changeGameTitle, startGame}) => (
+const Home = ({game, player, changeGameTitle, startGame, history, setHostType, setPlayerIP}) => (
   <div className="home__holder">
     <div className="home__overlay">
       <div className="home__grid">
@@ -23,7 +23,7 @@ const Home = ({game, player, changeGameTitle, startGame}) => (
         </div>
           <Button1
             name={'START'}
-            click={()=>startGame(game,player)}
+            click={()=>{startGame(game,player,history, setPlayerIP, setHostType)}}
             className={'button__one button__one__active'}
           >
           </Button1>

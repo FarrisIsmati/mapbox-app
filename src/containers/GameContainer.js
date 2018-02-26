@@ -11,10 +11,10 @@ import {
           changeMarkerCoords
         }                             from '../redux/actions/gameActions'
 
-const GameContainer = () => {
+const GameContainer = ({history}) => {
   return(
     <div className="gamecontainer__holder fullheight">
-      <SetupContainer />
+      <SetupContainer history={history} />
       <MapGame />
     </div>
   )

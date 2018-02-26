@@ -1,7 +1,8 @@
 import {
         CHANGE_PLAYER_NAME,
         SET_HOST_TYPE,
-        CHANGE_ACTIVE_HANDLER
+        CHANGE_ACTIVE_HANDLER,
+        SET_PLAYER_IP
 }                            from "../constants/constants"
 
 //Exported only for testing purposes
@@ -22,6 +23,10 @@ export function playerReducer(state = defaultState, action) {
         ...state, ...action.payload
       }
     case CHANGE_ACTIVE_HANDLER:
+      return {
+        ...state, ...action.payload
+      }
+    case SET_PLAYER_IP:
       return {
         ...state, ...action.payload
       }
