@@ -22,6 +22,8 @@ import {
           changeSetMarkerCoords
         }                             from '../redux/actions/gameActions'
 
+//Convert to Class on component Did Mount Upload Data From Backend
+
 //Upon submitting name animate fade away and disable text area
 //requestHostName set to false in store
 //Set player to host

@@ -1,9 +1,7 @@
 import {
         CHANGE_REQUEST_HOST_NAME,
         CHANGE_NAME_HOLDER_CLASS,
-        CHANGE_SETUP_CONFIG_CLASS,
-        CHANGE_SETUP_CONFIG_SETBTN_CLASS,
-        CHANGE_SETUP_CONFIG_STARTBTN_CLASS
+        CHANGE_SETUP_CONFIG_CLASS
 }                            from "../constants/constants"
 
 

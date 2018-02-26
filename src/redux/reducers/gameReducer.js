@@ -8,6 +8,8 @@ import {
 //Exported only for testing purposes
 export const defaultState = {
   title: '@%#!,',
+  completed: false,
+  active: false,
   mapMarkerCoords: [-77, 38.8],
   setMarkerCoords: [-77, 38.8],
   setMarkerRadius: '0'

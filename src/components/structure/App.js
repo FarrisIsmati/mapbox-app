@@ -10,6 +10,7 @@ import { BrowserRouter as Router,
 import HomeContainer                  from '../../containers/HomeContainer'
 import GameContainer                  from '../../containers/GameContainer'
 
+//Add a 404 Route page and a Help Guide Page
 const App = ({ store }) => (
   <Provider store={store}>
     <Router>
@@ -17,7 +18,6 @@ const App = ({ store }) => (
         <Switch>
           <Route exact path="/" component={HomeContainer} />
           <Route path="/game" component={GameContainer} />
-          //Add a 404 page
           <Route path="/*" component={HomeContainer} />
         </Switch>
       </div>

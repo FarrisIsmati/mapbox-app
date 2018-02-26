@@ -6,8 +6,6 @@ import {
           draggableMarker,
           geocoder,
           circleRadius,
-          coordsEqual,
-          createGeoJSONCircle,
           setRadiusOnUpdate
         }                         from '../../utils/mapHelpers.js'
 
@@ -38,11 +36,14 @@ class MapGame extends Component {
       this.setState({map: map, mapLoaded: true},()=>{
         draggableMarker(this.state.map)
         geocoder(this.state.map, mapboxgl.accessToken)
+        
+        //Set so circle radius only shows up if your the host
         circleRadius(this.state.map)
       })
     })
   }
 
+  //Set it so Radius only shows up if you're the host
   componentDidUpdate() {
     if (this.state.mapLoaded) {
       setRadiusOnUpdate(this.state.map, this.props.game)

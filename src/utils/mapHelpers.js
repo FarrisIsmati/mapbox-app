@@ -148,7 +148,6 @@ export function draggableMarker(map) {
 
   function onUp(e) {
     if (!isDragging) return
-    let coords = e.lngLat
     canvas.style.cursor = ''
     isDragging = false
     setStyle(0,'rgba(0,0,0,0)')
@@ -197,7 +196,7 @@ export function setRadiusOnUpdate(map, game) {
     let newCoords = game.setMarkerCoords
     let setCoords = map.getSource('markedRadius')._data.features[0].geometry.originalCoords
     let setRadius = map.getSource('markedRadius')._data.features[0].geometry.radius
-    if (!coordsEqual(newCoords,setCoords) || game.setMarkerRadius != setRadius){
+    if (!coordsEqual(newCoords,setCoords) || game.setMarkerRadius !== setRadius){
       let geojson = createGeoJSONCircle(game.setMarkerCoords, game.setMarkerRadius).data
       //I'm unsure if I'm mutating state with this line
       map.getSource('markedRadius').setData(geojson)

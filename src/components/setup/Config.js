@@ -1,6 +1,5 @@
 //DEPENDENCIES
 import React, { Component }           from 'react'
-import PropTypes                      from 'prop-types'
 
 //COMPONENTS
 import Button1                        from '../common/buttons/Button1'
@@ -25,7 +24,8 @@ class Config extends Component {
   }
 
   //Sets the current marker location and radius in the store
-  setMarker() {
+  setMarker(e) {
+    e.preventDefault()
     this.props.changeSetMarkerRadius(this.state.markerRadius)
     this.props.changeSetMarkerCoords(this.props.game.mapMarkerCoords)
   }
@@ -45,7 +45,8 @@ class Config extends Component {
 
           <div className="setupconfig__grid setupconfig__grid__start">
             <Input1
-              onChange={(e)=>this.setMarkerRadius(e)}
+              onSubmit={e=>this.setMarker(e)}
+              onChange={e=>this.setMarkerRadius(e)}
               maxLength="4"
               className="input input__medium"
               value={this.state.markerRadius}
@@ -53,10 +54,10 @@ class Config extends Component {
               size="4"
             />
           <h1 id="miles">km</h1>
-            { parseInt(this.state.markerRadius) > 0 ?
+            { parseInt(this.state.markerRadius, 10) > 0 ?
               <Button1
                 name={"Set"}
-                click={()=>{this.setMarker()}}
+                click={e=>this.setMarker(e)}
                 className='button__one button__one__active'
               /> :
             <Button1
