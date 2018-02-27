@@ -5,6 +5,7 @@ import axios                          from 'axios'
 
 //COMPONENTS
 import home                           from '../components/home/Home'
+import MapBackground                  from '../components/mapbox/MapBackground'
 
 //REDUX
 import { changeGameTitle }            from '../redux/actions/gameActions'
@@ -32,7 +33,10 @@ const startGame = (game,player,history,setPlayerIP,setHostType) => {
 
 const HomeContainer = ({history}) => {
   return(
-    <Home history={history} startGame={startGame} />
+    <div className="home__holder">
+      <Home history={history} startGame={startGame} />
+      <MapBackground />
+    </div>
   )
 }
 
