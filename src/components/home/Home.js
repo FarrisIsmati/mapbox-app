@@ -53,7 +53,8 @@ Home.propTypes = {
   startGame: PropTypes.func,
   history: PropTypes.object,
   setHostType: PropTypes.func,
-  setPlayerIP: PropTypes.func
+  setPlayerIP: PropTypes.func,
+  setGameID: PropTypes.func
 }
 
 export default Home

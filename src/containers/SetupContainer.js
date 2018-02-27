@@ -11,7 +11,8 @@ import Input1                         from '../components/common/inputs/Input1'
 //REDUX
 import {
           changePlayerName,
-          setHostType
+          setHostType,
+          changeActiveHandler
         }                             from '../redux/actions/playerActions'
 import {
           changeRequestHostName,
@@ -21,7 +22,8 @@ import {
 import {
           changeGameTitle,
           changeSetMarkerRadius,
-          changeSetMarkerCoords
+          changeSetMarkerCoords,
+          changeActiveState
         }                             from '../redux/actions/gameActions'
 
 class SetupContainer extends Component {
@@ -30,22 +32,27 @@ class SetupContainer extends Component {
 
     this.onSubmitName = this.onSubmitName.bind(this)
     this.setMarker = this.setMarker.bind(this)
+    this.startGame = this.startGame.bind(this)
   }
 
   //Upon submitting name animate fade away and disable text area
   //requestHostName set to false in store
   //Set player to host
-  onSubmitName(e=null, input=null) {
-    //So this function can be called outside a form submit
-    if (e){
-      e.preventDefault()
-      input.disabled = true
-    }
+  //Update name in backend
+  onSubmitName(e, input) {
+    e.preventDefault()
+    input.disabled = true
     let self = this
     this.props.changeNameHolderClass('name__holder name__holder__deactive')
-    setTimeout(()=>{
-      self.props.changeRequestHostName(false)
-    }, 1600)
+    axios.put('http://localhost:3001/game/name/' + this.props.game.id,{
+      "name": this.props.player.name,
+      "host": this.props.player.host
+    })
+    .then(()=>{
+      setTimeout(()=>{
+        self.props.changeRequestHostName(false)
+      }, 1600)
+    })
   }
 
   setMarker(e, radius, coords) {
@@ -55,6 +62,12 @@ class SetupContainer extends Component {
     }
     this.props.changeSetMarkerRadius(this.props.game.id, radius)
     this.props.changeSetMarkerCoords(this.props.game.id, coords)
+  }
+
+  startGame() {
+    this.props.changeSetupConfigClass("setupconfig__holder setupconfig__holder__deactive")
+    this.props.changeActiveState(this.props.game.id, true)
+    this.props.changeActiveHandler(this.props.game.id, false, true)
   }
 
   //If you didnt start the game redirect
@@ -82,7 +95,7 @@ class SetupContainer extends Component {
               value={this.props.player.name}
             />
           </div> :
-          <Config setMarker={this.setMarker} />
+          <Config setMarker={this.setMarker} startGame={this.startGame}/>
         }
       </div>
     )
@@ -116,6 +129,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeSetMarkerCoords: (id, coords) => {
       dispatch(changeSetMarkerCoords(id, coords))
+    },
+    changeActiveState: (id, bool) => {
+      dispatch(changeActiveState(id, bool))
+    },
+    changeActiveHandler: (id, isActive, isHost) => {
+      dispatch(changeActiveHandler(id, isActive, isHost))
     }
   }
 }

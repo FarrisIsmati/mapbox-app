@@ -3,7 +3,8 @@ import {
         SET_GAME_ID,
         CHANGE_MARKER_COORDS,
         CHANGE_SET_MARKER_RADIUS,
-        CHANGE_SET_MARKER_COORDS
+        CHANGE_SET_MARKER_COORDS,
+        CHANGE_ACTIVE_STATE
 }                            from "../constants/constants"
 
 //Exported only for testing purposes
@@ -23,6 +24,10 @@ export function gameReducer(state = defaultState, action) {
         ...state, ...action.payload
       }
     case SET_GAME_ID:
+      return {
+        ...state, ...action.payload
+      }
+    case CHANGE_ACTIVE_STATE:
       return {
         ...state, ...action.payload
       }

@@ -1,3 +1,4 @@
+import axios                 from 'axios'
 import {
         CHANGE_PLAYER_NAME,
         SET_HOST_TYPE,
@@ -26,13 +27,25 @@ export function setHostType(bool){
   }
 }
 
-//Sets who can handle the marker
-export function changeActiveHandler(bool){
+function changeActiveHandlerAPI(bool){
   return {
     type: CHANGE_ACTIVE_HANDLER,
     payload: {
       activeHandler: bool
     }
+  }
+}
+
+//Sets who can handle the marker
+export function changeActiveHandler(id, isActive, isHost){
+  return function(dispatch){
+    axios.put('http://localhost:3001/game/activeHandler/' + id,{
+      "host": isHost,
+      "active": isActive
+    })
+    .then(()=>{
+      dispatch(changeActiveHandlerAPI(isActive))
+    })
   }
 }
 

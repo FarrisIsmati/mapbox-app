@@ -61,7 +61,7 @@ class Config extends Component {
             { this.props.game.setMarkerCoords[0] && this.props.game.setMarkerRadius > 0 ?
               <Button1
                 name={"Start"}
-                click={()=>{console.log('clicked')}}
+                click={this.props.startGame}
                 className='button__one button__one__active'
               /> :
               <Button1

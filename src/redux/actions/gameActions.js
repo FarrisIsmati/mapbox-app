@@ -4,7 +4,8 @@ import {
         SET_GAME_ID,
         CHANGE_MARKER_COORDS,
         CHANGE_SET_MARKER_COORDS,
-        CHANGE_SET_MARKER_RADIUS
+        CHANGE_SET_MARKER_RADIUS,
+        CHANGE_ACTIVE_STATE
 }                            from "../constants/constants"
 
 //Changes title of the game
@@ -37,6 +38,27 @@ export function changeMarkerCoords(coords){
   }
 }
 
+//Change active state of game
+function changeActiveStateAPI(bool){
+  return {
+    type: CHANGE_ACTIVE_STATE,
+    payload: {
+      active: bool
+    }
+  }
+}
+
+export function changeActiveState(id, bool){
+  return function(dispatch){
+    axios.put('http://localhost:3001/game/active/' + id,{
+      "active": bool
+    })
+    .then(()=>{
+      dispatch(changeActiveStateAPI(bool))
+    })
+  }
+}
+
 //Update Radius of Set GEOJSON
 function changeSetMarkerCoordsAPI(coords){
   return {
@@ -47,7 +69,6 @@ function changeSetMarkerCoordsAPI(coords){
   }
 }
 
-//Changes the set coordinates of the game
 export function changeSetMarkerCoords(id, coords){
   return function(dispatch){
     axios.put('http://localhost:3001/game/coordinates/' + id,{
