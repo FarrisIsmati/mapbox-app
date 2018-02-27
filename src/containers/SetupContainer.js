@@ -19,52 +19,50 @@ import {
           changeSetupConfigClass
         }                             from '../redux/actions/uiActions'
 import {
+          changeGameTitle,
           changeSetMarkerRadius,
           changeSetMarkerCoords
         }                             from '../redux/actions/gameActions'
-
-//Convert to Class on component Did Mount Upload Data From Backend
-
 
 class SetupContainer extends Component {
   constructor(){
     super()
 
     this.onSubmitName = this.onSubmitName.bind(this)
+    this.setMarker = this.setMarker.bind(this)
   }
 
   //Upon submitting name animate fade away and disable text area
   //requestHostName set to false in store
   //Set player to host
-  onSubmitName(e, input) {
-    e.preventDefault()
+  onSubmitName(e=null, input=null) {
+    //So this function can be called outside a form submit
+    if (e){
+      e.preventDefault()
+      input.disabled = true
+    }
     let self = this
-    input.disabled = true
-    this.props.setHostType(true)
     this.props.changeNameHolderClass('name__holder name__holder__deactive')
     setTimeout(()=>{
       self.props.changeRequestHostName(false)
     }, 1600)
   }
 
-  //Redirect if the host IP is not the same as the game host's IP
+  setMarker(e, radius, coords) {
+    //So this function can be called outside a form submit
+    if (e) {
+      e.preventDefault()
+    }
+    this.props.changeSetMarkerRadius(this.props.game.id, radius)
+    this.props.changeSetMarkerCoords(this.props.game.id, coords)
+  }
+
+  //If you didnt start the game redirect
+  //This will remove you if you refresh as well (IF you want that functionality back check out the utility helper for host IP address checking and state saving)
   componentDidMount() {
-    axios.get('http://localhost:3001' + this.props.history.location.pathname)
-      .then((res)=>{
-        return axios.get('https://freegeoip.net/json/')
-                .then((resIP)=>{
-                  if (resIP.data.ip !== res.data.host.ip) {
-                    console.log('IP Addresses do not match!')
-                    //this.props.history.push('/')
-                  }
-                })
-                .catch((err)=>{
-                  console.log(err)
-                })
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
+    if (!this.props.player.host) {
+      this.props.history.push('/')
+    }
   }
 
   render() {
@@ -84,7 +82,7 @@ class SetupContainer extends Component {
               value={this.props.player.name}
             />
           </div> :
-          <Config />
+          <Config setMarker={this.setMarker} />
         }
       </div>
     )
@@ -95,6 +93,9 @@ class SetupContainer extends Component {
 const mapStateToProps = (state) => ({...state})
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    changeGameTitle : (title) => {
+      dispatch(changeGameTitle(title))
+    },
     changePlayerName: (playerName) => {
       dispatch(changePlayerName(playerName))
     },
@@ -107,14 +108,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     changeNameHolderClass: (className) => {
       dispatch(changeNameHolderClass(className))
     },
-    changeSetMarkerRadius: (radius) => {
-      dispatch(changeSetMarkerRadius(radius))
+    changeSetMarkerRadius: (id, radius) => {
+      dispatch(changeSetMarkerRadius(id, radius))
     },
     changeSetupConfigClass: (className) => {
       dispatch(changeSetupConfigClass(className))
     },
-    changeSetMarkerCoords: (coords) => {
-      dispatch(changeSetMarkerCoords(coords))
+    changeSetMarkerCoords: (id, coords) => {
+      dispatch(changeSetMarkerCoords(id, coords))
     }
   }
 }

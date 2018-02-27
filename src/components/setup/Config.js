@@ -11,7 +11,6 @@ class Config extends Component {
 
     this.state={ markerRadius: '0' }
 
-    this.setMarker = this.setMarker.bind(this)
     this.setMarkerRadius = this.setMarkerRadius.bind(this)
   }
 
@@ -21,13 +20,6 @@ class Config extends Component {
     if (!isNaN(e.target.value)) {
       this.setState({markerRadius: e.target.value})
     }
-  }
-
-  //Sets the current marker location and radius in the store
-  setMarker(e) {
-    e.preventDefault()
-    this.props.changeSetMarkerRadius(this.state.markerRadius)
-    this.props.changeSetMarkerCoords(this.props.game.mapMarkerCoords)
   }
 
   componentDidMount() {
@@ -42,10 +34,9 @@ class Config extends Component {
     return(
       <div className={this.props.ui.setupConfigClass}>
         <div className="setupconfig">
-
           <div className="setupconfig__grid setupconfig__grid__start">
             <Input1
-              onSubmit={e=>this.setMarker(e)}
+              onSubmit={e=>this.props.setMarker(e, this.state.markerRadius, this.props.game.mapMarkerCoords)}
               onChange={e=>this.setMarkerRadius(e)}
               maxLength="4"
               className="input input__medium"
@@ -53,11 +44,11 @@ class Config extends Component {
               placeholder='0'
               size="4"
             />
-          <h1 id="miles">km</h1>
+            <h1 id="miles">km</h1>
             { parseInt(this.state.markerRadius, 10) > 0 ?
               <Button1
                 name={"Set"}
-                click={e=>this.setMarker(e)}
+                click={e=>this.props.setMarker(e, this.state.markerRadius, this.props.game.mapMarkerCoords)}
                 className='button__one button__one__active'
               /> :
             <Button1

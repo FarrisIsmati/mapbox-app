@@ -10,9 +10,11 @@ const Home = ({
     game,
     player,
     changeGameTitle,
-    startGame, history,
+    startGame,
+    history,
     setHostType,
-    setPlayerIP
+    setPlayerIP,
+    setGameID
   }) => (
   <div className="home__overlay">
     <div className="home__grid">
@@ -29,7 +31,14 @@ const Home = ({
       </div>
         <Button1
           name={'START'}
-          click={()=>{startGame(game,player,history, setPlayerIP, setHostType)}}
+          click={()=>{startGame(
+            game,
+            player,
+            history,
+            setPlayerIP,
+            setHostType,
+            setGameID
+          )}}
           className={'button__one button__one__active'}
         >
         </Button1>

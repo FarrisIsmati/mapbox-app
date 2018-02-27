@@ -1,5 +1,6 @@
 import {
         CHANGE_GAME_TITLE,
+        SET_GAME_ID,
         CHANGE_MARKER_COORDS,
         CHANGE_SET_MARKER_RADIUS,
         CHANGE_SET_MARKER_COORDS
@@ -18,6 +19,10 @@ export const defaultState = {
 export function gameReducer(state = defaultState, action) {
   switch (action.type) {
     case CHANGE_GAME_TITLE:
+      return {
+        ...state, ...action.payload
+      }
+    case SET_GAME_ID:
       return {
         ...state, ...action.payload
       }
