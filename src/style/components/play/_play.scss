@@ -1,0 +1,17 @@
+.playcontainer__holder {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 9;
+  pointer-events: none;
+}
+
+.chatbox__holder {
+  height: 100%;
+  width: 25%;
+  margin: 0;
+  pointer-events: auto;
+  background-color: #FFF;
+  display: grid;
+  grid-template-rows: 10% auto 10%;
+}

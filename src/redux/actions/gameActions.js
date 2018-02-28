@@ -5,7 +5,8 @@ import {
         CHANGE_MARKER_COORDS,
         CHANGE_SET_MARKER_COORDS,
         CHANGE_SET_MARKER_RADIUS,
-        CHANGE_ACTIVE_STATE
+        CHANGE_ACTIVE_STATE,
+        CHANGE_RESET_COORDS
 }                            from "../constants/constants"
 
 //Changes title of the game
@@ -98,5 +99,14 @@ export function changeSetMarkerRadius(id, radius){
     .then(()=>{
       dispatch(changeSetMarkerRadiusAPI(radius))
     })
+  }
+}
+
+export function changeResetCoords(bool){
+  return {
+    type: CHANGE_RESET_COORDS,
+    payload: {
+      resetCoords: bool
+    }
   }
 }

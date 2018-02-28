@@ -4,7 +4,8 @@ import {
         CHANGE_MARKER_COORDS,
         CHANGE_SET_MARKER_RADIUS,
         CHANGE_SET_MARKER_COORDS,
-        CHANGE_ACTIVE_STATE
+        CHANGE_ACTIVE_STATE,
+        CHANGE_RESET_COORDS
 }                            from "../constants/constants"
 
 //Exported only for testing purposes
@@ -12,9 +13,10 @@ export const defaultState = {
   title: '@%#!,',
   completed: false,
   active: false,
-  mapMarkerCoords: [-77, 38.8],
-  setMarkerCoords: [-77, 38.8],
-  setMarkerRadius: '0'
+  mapMarkerCoords: [0,0],
+  setMarkerCoords: [0,0],
+  setMarkerRadius: '0',
+  resetCoords: false
 }
 
 export function gameReducer(state = defaultState, action) {
@@ -40,6 +42,10 @@ export function gameReducer(state = defaultState, action) {
         ...state, ...action.payload
       }
     case CHANGE_SET_MARKER_RADIUS:
+      return {
+        ...state, ...action.payload
+      }
+    case CHANGE_RESET_COORDS:
       return {
         ...state, ...action.payload
       }

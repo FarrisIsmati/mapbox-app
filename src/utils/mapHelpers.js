@@ -203,3 +203,24 @@ export function setRadiusOnUpdate(map, game) {
     }
   }
 }
+
+//Update the set map marker geojson by comparing the current geojson location to the redux store location
+export function setMarkerOnUpdate(map, game) {
+  let geojson = {
+      "type": "FeatureCollection",
+      "features": [{
+          "type": "Feature",
+          "geometry": {
+              "type": "Point",
+              "coordinates": store.getState().game.mapMarkerCoords
+          }
+      }]
+  }
+
+  //I'm unsure if I'm mutating state with this line
+  map.getSource('point').setData(geojson)
+  map.flyTo({
+    center: [0,0],
+    zoom: 3
+  })
+}

@@ -6,7 +6,8 @@ import {
           draggableMarker,
           geocoder,
           circleRadius,
-          setRadiusOnUpdate
+          setRadiusOnUpdate,
+          setMarkerOnUpdate
         }                         from '../../utils/mapHelpers.js'
 
 //STYLES
@@ -47,6 +48,12 @@ class MapGame extends Component {
   componentDidUpdate() {
     if (this.state.mapLoaded) {
       setRadiusOnUpdate(this.state.map, this.props.game)
+    }
+
+    //If you turn on reset game coords then you can set the coords to what ever you dispatch to changeMapMarker
+    if (this.props.game.resetCoords) {
+      console.log('RUN THIS')
+      setMarkerOnUpdate(this.state.map, this.props.game)
     }
   }
 

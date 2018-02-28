@@ -4,6 +4,7 @@ import { connect }                    from 'react-redux'
 
 //COMPONENTS
 import SetupContainer                 from './SetupContainer'
+import PlayContainer                  from './PlayContainer'
 import mapGame                        from '../components/mapbox/MapGame'
 
 //REDUX
@@ -11,10 +12,13 @@ import {
           changeMarkerCoords
         }                             from '../redux/actions/gameActions'
 
-const GameContainer = ({history}) => {
+const GameContainer = ({history, game}) => {
   return(
     <div className="gamecontainer__holder fullheight">
-      <SetupContainer history={history} />
+      { !game.active ?
+        <SetupContainer history={history} /> :
+        <PlayContainer />
+      }
       <MapGame />
     </div>
   )

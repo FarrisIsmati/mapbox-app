@@ -21,9 +21,11 @@ import {
         }                             from '../redux/actions/uiActions'
 import {
           changeGameTitle,
+          changeMarkerCoords,
           changeSetMarkerRadius,
           changeSetMarkerCoords,
-          changeActiveState
+          changeActiveState,
+          changeResetCoords
         }                             from '../redux/actions/gameActions'
 
 class SetupContainer extends Component {
@@ -64,10 +66,17 @@ class SetupContainer extends Component {
     this.props.changeSetMarkerCoords(this.props.game.id, coords)
   }
 
+  //Sets the game up to be active so you can start playing and disables the setup container after the timeout
   startGame() {
+    let self = this
     this.props.changeSetupConfigClass("setupconfig__holder setupconfig__holder__deactive")
-    this.props.changeActiveState(this.props.game.id, true)
-    this.props.changeActiveHandler(this.props.game.id, false, true)
+    setTimeout(()=>{
+      self.props.changeResetCoords(true)
+      self.props.changeMarkerCoords([0,0])
+      self.props.changeResetCoords(false)
+      self.props.changeActiveHandler(this.props.game.id, false, true)
+      self.props.changeActiveState(this.props.game.id, true)
+    }, 1600)
   }
 
   //If you didnt start the game redirect
@@ -127,6 +136,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     changeSetupConfigClass: (className) => {
       dispatch(changeSetupConfigClass(className))
     },
+    changeMarkerCoords: (coords) => {
+      dispatch(changeMarkerCoords(coords))
+    },
     changeSetMarkerCoords: (id, coords) => {
       dispatch(changeSetMarkerCoords(id, coords))
     },
@@ -135,6 +147,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeActiveHandler: (id, isActive, isHost) => {
       dispatch(changeActiveHandler(id, isActive, isHost))
+    },
+    changeResetCoords: (bool) => {
+      dispatch(changeResetCoords(bool))
     }
   }
 }
