@@ -4,7 +4,8 @@ import { connect }                    from 'react-redux'
 import axios                          from 'axios'
 
 //COMPONENTS
-import Play                           from '../components/play/Play'
+import HostInput                      from '../components/play/HostInput'
+import UserInput                      from '../components/play/UserInput'
 
 class PlayContainer extends Component {
   constructor(){
@@ -18,7 +19,14 @@ class PlayContainer extends Component {
   render() {
     return (
       <div className="playcontainer__holder">
-        <Play />
+        <div className="chatbox__holder">
+          <div></div>
+          <div></div>
+          <div className="guesscounter__holder">
+            <p>Questions left: <span>9</span></p>
+          </div>
+          <UserInput />
+        </div>
       </div>
     )
   }

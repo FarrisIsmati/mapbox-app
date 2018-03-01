@@ -27,6 +27,10 @@
   }
 }
 
+.input__visible {
+  background-color: rgba(33,33,33,.2);
+}
+
 .input__medium {
   font-size: $medium-font-size;
 }

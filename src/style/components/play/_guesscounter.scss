@@ -1,0 +1,12 @@
+.guesscounter__holder{
+  padding: $chatboxpadding;
+  display: flex;
+  align-items: center;
+
+  & p {
+    font-weight: $light;
+    color: #FFF;
+    font-size: .7em;
+    text-shadow: $text-shadow;
+  }
+}

@@ -5,23 +5,30 @@ import { Link }                       from 'react-router-dom'
 
 
 //If the button is a link provide a link, you can also provide a function
-const Button1 = ({name, link, click, className}) => (
-  <div>
-    {
-      link ?
-        <Link to={link}>
-          <h1 className={className} onClick={click} value={name}>{name}</h1>
-        </Link> :
-        <h1 className={className} onClick={click} value={name}>{name}</h1>
-    }
-  </div>
-)
+const Button1 = ({name, link, click, className, fontSize}) => {
+  const inlineStyles = {
+    fontSize: fontSize
+  }
+
+  return (
+    <div>
+      {
+        link ?
+          <Link to={link}>
+            <h1 style={inlineStyles} className={className} onClick={click} value={name}>{name}</h1>
+          </Link> :
+          <h1 style={inlineStyles} className={className} onClick={click} value={name}>{name}</h1>
+      }
+    </div>
+  )
+}
 
 Button1.propTypes = {
   name: PropTypes.string,
   link: PropTypes.string,
   click: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  fontSize: PropTypes.string
 }
 
 Button1.defaultProps = {
