@@ -40,7 +40,8 @@ export function changeMarkerCoords(coords){
 }
 
 //Change active state of game
-function changeActiveStateAPI(bool){
+//Exported so I dont have to make the API call when mounting GameContainer
+export function changeActiveStateAPI(bool){
   return {
     type: CHANGE_ACTIVE_STATE,
     payload: {

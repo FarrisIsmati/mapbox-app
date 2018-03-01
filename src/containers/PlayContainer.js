@@ -11,6 +11,10 @@ class PlayContainer extends Component {
     super()
   }
 
+  componentDidMount() {
+    console.log('Play container here in action')
+  }
+
   render() {
     return (
       <div className="playcontainer__holder">
