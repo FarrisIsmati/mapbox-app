@@ -5,3 +5,13 @@
   z-index: 9;
   pointer-events: none;
 }
+
+.ui__holder__deactive {
+  margin-top: 10%;
+  transition: margin-top .8s cubic-bezier(.75,-0.5,0,1.4);
+}
+
+.ui__holder__active {
+  margin-top: 0%;
+  transition: margin-top .8s cubic-bezier(.75,-0.5,0,1.4);
+}

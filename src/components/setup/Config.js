@@ -22,13 +22,11 @@ class Config extends Component {
     }
   }
 
-  //If you didnt start the game redirect
-  //This will remove you if you refresh as well (IF you want that functionality back check out the utility helper for host IP address checking and state saving)
   componentDidMount() {
     //Component needs to mount before triggering animation otherwise animation wont run
     let self = this
     setTimeout(()=>{
-      self.props.changeSetupConfigClass("setupconfig__holder setupconfig__holder__active")
+      self.props.changeSetupConfigClass("setupconfig__holder ui__holder__active")
     }, 100)
   }
 

@@ -10,9 +10,17 @@ class Play extends Component {
     super()
   }
 
+  componentDidMount() {
+    //Component needs to mount before triggering animation otherwise animation wont run
+    let self = this
+    setTimeout(()=>{
+      self.props.changeSetupPlayClass("play__holder ui__holder__active")
+    }, 100)
+  }
+
   render(){
     return(
-      <div className="playcontainer__holder">
+      <div className={this.props.ui.setupPlayClass}>
         <div className="chatbox__holder">
           <div></div>
           <div></div>

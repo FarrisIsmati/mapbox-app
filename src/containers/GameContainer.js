@@ -18,7 +18,8 @@ import {
 import {
           changeRequestHostName,
           changeNameHolderClass,
-          changeSetupConfigClass
+          changeSetupConfigClass,
+          changeSetupPlayClass
         }                             from '../redux/actions/uiActions'
 import {
           changeGameTitle,
@@ -153,6 +154,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeSetupConfigClass: (className) => {
       dispatch(changeSetupConfigClass(className))
+    },
+    changeSetupPlayClass: (className) => {
+      dispatch(changeSetupPlayClass(className))
     },
     changeSetMarkerCoords: (id, coords) => {
       dispatch(changeSetMarkerCoords(id, coords))
