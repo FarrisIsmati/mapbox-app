@@ -2,6 +2,7 @@
 import React, { Component }           from 'react'
 
 //COMPONENTS
+import ChatLog                        from './ChatLog'
 import HostInput                      from './HostInput'
 import UserInput                      from './UserInput'
 
@@ -22,8 +23,7 @@ class Play extends Component {
     return(
       <div className={this.props.ui.setupPlayClass}>
         <div className="chatbox__holder">
-          <div></div>
-          <div></div>
+          <ChatLog />
           <div className="guesscounter__holder">
             <p>Questions left: <span>9</span></p>
           </div>

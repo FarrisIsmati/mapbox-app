@@ -12,7 +12,7 @@
   margin: 0;
   pointer-events: none;
   display: grid;
-  grid-template-rows: 10% auto 5% 20%;
+  grid-template-rows: auto 5% 20%;
   background-image: url("../img/Feather-01.png");
   background-position: 100% 0%;
 }
@@ -22,9 +22,5 @@
   .chatbox__holder {
     height: 40%;
     width: 100%;
-
-    & h1 {
-      font-size: .5em!important;
-    }
   }
 }
