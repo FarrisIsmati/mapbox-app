@@ -58,7 +58,7 @@ class Config extends Component {
           </div>
 
           <div className="setupconfig__grid setupconfig__grid__end">
-            { this.props.game.setMarkerCoords[0] || this.props.game.setMarkerCoords[0] == 0 && this.props.game.setMarkerRadius > 0 ?
+            { (this.props.game.setMarkerCoords[0] || this.props.game.setMarkerCoords[0] === 0) && this.props.game.setMarkerRadius > 0 ?
               <Button1
                 name={"Start"}
                 click={this.props.startGame}

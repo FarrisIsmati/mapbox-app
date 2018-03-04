@@ -91,8 +91,6 @@ class GameContainer extends Component {
       .then((json)=>{
         const data = json.data
         let {
-          changePlayerName,
-          changeNameHolderClass,
           changeGameTitle,
           changeActiveStateAPI,
           setGameID

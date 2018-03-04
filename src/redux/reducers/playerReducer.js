@@ -2,8 +2,7 @@ import {
         CHANGE_PLAYER_NAME,
         SET_HOST_TYPE,
         CHANGE_ACTIVE_HANDLER,
-        SET_PLAYER_IP,
-        SET_PLAYER_ID
+        SET_PLAYER_IP
 }                            from "../constants/constants"
 
 //Exported only for testing purposes

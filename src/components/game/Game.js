@@ -4,7 +4,6 @@ import PropTypes                      from 'prop-types'
 
 //COMPONENTS
 import Input1                         from '../common/inputs/Input1'
-import Button1                        from '../common/buttons/Button1'
 
 //Landing page
 const Game = ({
