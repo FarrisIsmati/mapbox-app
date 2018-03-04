@@ -3,4 +3,31 @@
   padding: $chatboxpadding;
   align-items: center;
   justify-content: space-between;
+  pointer-events: auto;
+
+  & form {
+    width: 60%;
+  }
+
+  & input {
+    padding: 0 10px;
+  }
+}
+
+
+//MEDIA QUERY
+@media (max-width: 768px) {
+  .userinput__holder {
+    & h1 {
+      font-size: 1.2em !important;
+    }
+
+    & form {
+      width: 50%;
+    }
+
+    & input {
+      font-size: 1.2em !important;
+    }
+  }
 }

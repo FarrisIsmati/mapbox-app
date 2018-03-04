@@ -16,7 +16,6 @@ const Game = ({
     <div className="setupcontainer__holder">
       { ui.requestHostName ?
         <div className={ui.nameHolderClass}>
-        {console.log(children)}
           <Input1
             onSubmit={(e, input)=> onSubmitName(
               e,
