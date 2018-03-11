@@ -9,6 +9,14 @@ import UserInput                      from './UserInput'
 class Play extends Component {
   constructor(){
     super()
+
+    this.checkParity = this.checkParity.bind(this)
+  }
+
+  checkParity() {
+    console.log('YES NIGGA')
+    const length = this.props.game.chatLog.length
+    return length === 0 || length % 2 === 0 ? true : false
   }
 
   componentDidMount() {
@@ -27,7 +35,10 @@ class Play extends Component {
           <div className="guesscounter__holder">
             <p>Questions left: <span>9</span></p>
           </div>
-          <UserInput state={this.props}/>
+          <UserInput
+            state={this.props}
+            parity={this.checkParity}
+          />
         </div>
       </div>
     )

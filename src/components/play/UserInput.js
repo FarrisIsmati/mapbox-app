@@ -7,16 +7,22 @@ import Input1                         from '../common/inputs/Input1'
 
 const submitChat = (e, data, state) => {
   e.preventDefault()
-  state.state.submitToChatlog({playerName: state.state.player.name, content: data})
+  state.submitToChatlog({playerName: state.player.name, content: data})
 }
 
-const UserInput = (state) => (
+//Input only on even number of inputs 
+const UserInput = (props) => (
   <div className="userinput__holder">
-    <Input1
-      onSubmit={(e)=>{submitChat(e, e.target[0].value, state); e.target[0].value = ""}}
-      className="input input__visible input__medium"/>
+    {props.parity() ?
+      <Input1
+      onSubmit={(e)=>{submitChat(e, e.target[0].value, props.state); e.target[0].value = ""}}
+      className="input input__visible input__medium"/>:
+      <Input1
+        onSubmit={(e)=>e.preventDefault()}
+        className="input input__deactive input__medium"/>
+    }
     <Button1 fontSize="2em" name="Guess" />
-  </div>
+    </div>
 )
 
 export default UserInput

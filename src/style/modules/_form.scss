@@ -31,6 +31,10 @@
   background-color: rgba(33,33,33,.2);
 }
 
+.input__deactive {
+  background-color: rgba(33,33,33,.05);
+}
+
 .input__medium {
   font-size: $medium-font-size;
 }
