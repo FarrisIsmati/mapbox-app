@@ -6,7 +6,8 @@ import {
         CHANGE_SET_MARKER_COORDS,
         CHANGE_SET_MARKER_RADIUS,
         CHANGE_ACTIVE_STATE,
-        CHANGE_RESET_COORDS
+        CHANGE_RESET_COORDS,
+        SUBMIT_TO_CHATLOG
 }                            from "../constants/constants"
 
 //Changes title of the game
@@ -108,6 +109,15 @@ export function changeResetCoords(bool){
     type: CHANGE_RESET_COORDS,
     payload: {
       resetCoords: bool
+    }
+  }
+}
+
+export function submitToChatlog(chatData, id){
+  return {
+    type: SUBMIT_TO_CHATLOG,
+    payload: {
+      ...chatData
     }
   }
 }

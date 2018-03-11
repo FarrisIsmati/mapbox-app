@@ -5,7 +5,8 @@ import {
         CHANGE_SET_MARKER_RADIUS,
         CHANGE_SET_MARKER_COORDS,
         CHANGE_ACTIVE_STATE,
-        CHANGE_RESET_COORDS
+        CHANGE_RESET_COORDS,
+        SUBMIT_TO_CHATLOG
 }                            from "../constants/constants"
 
 //Exported only for testing purposes
@@ -16,7 +17,11 @@ export const defaultState = {
   mapMarkerCoords: [0,0],
   setMarkerCoords: [0,0],
   setMarkerRadius: '0',
-  resetCoords: false
+  resetCoords: false,
+  chatLog: [
+    {playerName: 'Farris', content: 'Is it north of the south equator and on top of the empire state building? LMK'},
+    {playerName: 'Jim', content: 'No'}
+  ]
 }
 
 export function gameReducer(state = defaultState, action) {
@@ -48,6 +53,10 @@ export function gameReducer(state = defaultState, action) {
     case CHANGE_RESET_COORDS:
       return {
         ...state, ...action.payload
+      }
+    case SUBMIT_TO_CHATLOG:
+      return {
+        ...state, chatLog: [...state.chatLog, action.payload]
       }
     default:
       return state

@@ -23,7 +23,7 @@ class Play extends Component {
     return(
       <div className={this.props.ui.setupPlayClass}>
         <div className="chatbox__holder">
-          <ChatLog />
+          <ChatLog state={this.props}/>
           <div className="guesscounter__holder">
             <p>Questions left: <span>9</span></p>
           </div>

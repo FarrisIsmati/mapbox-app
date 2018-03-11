@@ -185,6 +185,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     setGameID: (id) => {
       dispatch(setGameID(id))
+    },
+    submitToChatlog: (chatData, id) => {
+      dispatch(chatData(id))
     }
   }
 }
