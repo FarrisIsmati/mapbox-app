@@ -11,12 +11,18 @@ class Play extends Component {
     super()
 
     this.checkParity = this.checkParity.bind(this)
+    this.submitChat = this.submitChat.bind(this)
   }
 
   checkParity() {
     console.log('YES NIGGA')
     const length = this.props.game.chatLog.length
     return length === 0 || length % 2 === 0 ? true : false
+  }
+
+  submitChat (e, data, state) {
+    e.preventDefault()
+    state.submitToChatlog({playerName: state.player.name, content: data})
   }
 
   componentDidMount() {
@@ -35,9 +41,10 @@ class Play extends Component {
           <div className="guesscounter__holder">
             <p>Questions left: <span>9</span></p>
           </div>
-          <UserInput
+          <HostInput
             state={this.props}
             parity={this.checkParity}
+            submitChat={this.submitChat}
           />
         </div>
       </div>
@@ -46,3 +53,9 @@ class Play extends Component {
 }
 
 export default Play
+
+// <UserInput
+//   state={this.props}
+//   parity={this.checkParity}
+//   submitChat={this.submitChat}
+// />

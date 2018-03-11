@@ -3,4 +3,8 @@
   padding: $chatboxpadding;
   align-items: center;
   justify-content: space-between;
+
+  & div {
+    pointer-events: auto;
+  }
 }
