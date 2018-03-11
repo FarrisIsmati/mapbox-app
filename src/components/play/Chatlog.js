@@ -11,7 +11,9 @@ const Response = (data) => data.map((res, i) => (
 
 const ChatLog = (state) => (
   <div className="chatlog__holder">
-    {Response(state.state.game.chatLog)}
+    <div >
+      {Response(state.state.game.chatLog)}
+    </div>
   </div>
 )
 

@@ -27,7 +27,7 @@ class Play extends Component {
           <div className="guesscounter__holder">
             <p>Questions left: <span>9</span></p>
           </div>
-          <UserInput />
+          <UserInput state={this.props}/>
         </div>
       </div>
     )

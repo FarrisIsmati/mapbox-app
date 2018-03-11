@@ -37,9 +37,8 @@ class MapGame extends Component {
       this.setState({map: map, mapLoaded: true},()=>{
         draggableMarker(this.state.map)
         geocoder(this.state.map, mapboxgl.accessToken)
-
         //Set so circle radius only shows up if your the host
-        circleRadius(this.state.map)
+        this.props.player.host ? circleRadius(this.state.map) : null
       })
     })
   }

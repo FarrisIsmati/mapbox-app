@@ -29,7 +29,8 @@ import {
           changeActiveState,
           changeResetCoords,
           changeActiveStateAPI,
-          setGameID
+          setGameID,
+          submitToChatlog
         }                             from '../redux/actions/gameActions'
 
 class GameContainer extends Component {
@@ -187,7 +188,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(setGameID(id))
     },
     submitToChatlog: (chatData, id) => {
-      dispatch(chatData(id))
+      dispatch(submitToChatlog(chatData, id))
     }
   }
 }
