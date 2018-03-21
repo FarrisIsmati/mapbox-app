@@ -62,7 +62,7 @@ export function changeActiveState(id, bool){
   }
 }
 
-//Update Radius of Set GEOJSON
+//Update coordinates of set marker
 function changeSetMarkerCoordsAPI(coords){
   return {
     type: CHANGE_SET_MARKER_COORDS,
@@ -113,6 +113,7 @@ export function changeResetCoords(bool){
   }
 }
 
+//~~~To be handled with websockets
 export function submitToChatlog(chatData, id){
   return {
     type: SUBMIT_TO_CHATLOG,

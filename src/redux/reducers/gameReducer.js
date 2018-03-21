@@ -18,10 +18,7 @@ export const defaultState = {
   setMarkerCoords: [0,0],
   setMarkerRadius: '0',
   resetCoords: false,
-  chatLog: [
-    {playerName: 'Farris', content: 'Is it north of the south equator and on top of the empire state building? LMK'},
-    {playerName: 'Jim', content: 'No'}
-  ]
+  chatLog: []
 }
 
 export function gameReducer(state = defaultState, action) {

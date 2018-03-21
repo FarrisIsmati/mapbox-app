@@ -1,10 +1,12 @@
 .hostinput__holder {
+  & div {
+    pointer-events: auto;
+  }
+}
+
+.hostinput__buttons {
   display: flex;
   padding: $chatboxpadding;
   align-items: center;
   justify-content: space-between;
-
-  & div {
-    pointer-events: auto;
-  }
 }

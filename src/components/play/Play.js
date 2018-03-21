@@ -15,7 +15,6 @@ class Play extends Component {
   }
 
   checkParity() {
-    console.log('YES NIGGA')
     const length = this.props.game.chatLog.length
     return length === 0 || length % 2 === 0 ? true : false
   }
@@ -41,7 +40,7 @@ class Play extends Component {
           <div className="guesscounter__holder">
             <p>Questions left: <span>9</span></p>
           </div>
-          <HostInput
+          <UserInput
             state={this.props}
             parity={this.checkParity}
             submitChat={this.submitChat}
@@ -54,7 +53,9 @@ class Play extends Component {
 
 export default Play
 
-// <UserInput
+
+
+// <HostInput
 //   state={this.props}
 //   parity={this.checkParity}
 //   submitChat={this.submitChat}

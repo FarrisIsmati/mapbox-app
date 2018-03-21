@@ -3,15 +3,15 @@ import React                          from 'react'
 
 const Response = (data) => data.map((res, i) => (
   <div key={i}>
-    <p>{res.playerName}:</p>
-    <p>{res.content}</p>
+    <p className="chatlog__playername">{res.playerName}:</p>
+    <p className="chatlog__playercontent">{res.content}</p>
   </div>
 ))
 
 
 const ChatLog = (state) => (
   <div className="chatlog__holder">
-    <div >
+    <div>
       {Response(state.state.game.chatLog)}
     </div>
   </div>

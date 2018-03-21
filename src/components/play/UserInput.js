@@ -10,10 +10,10 @@ const UserInput = (props) => (
   <div className="userinput__holder">
     {props.parity() ?
       <Input1
-      onSubmit={(e)=>{props.submitChat(e, e.target[0].value, props.state); e.target[0].value = ""}}
+      onSubmit={e=>{props.submitChat(e, e.target[0].value, props.state); e.target[0].value = ""}}
       className="input input__visible input__medium"/>:
       <Input1
-        onSubmit={(e)=>e.preventDefault()}
+        onSubmit={e=>e.preventDefault()}
         className="input input__deactive input__medium"/>
     }
     <Button1 fontSize="2em" name="Guess" />
