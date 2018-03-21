@@ -53,8 +53,6 @@ class Play extends Component {
 
 export default Play
 
-
-
 // <HostInput
 //   state={this.props}
 //   parity={this.checkParity}
