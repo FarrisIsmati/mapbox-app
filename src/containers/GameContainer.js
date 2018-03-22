@@ -2,7 +2,6 @@
 import React, { Component }           from 'react'
 import { connect }                    from 'react-redux'
 import axios                          from 'axios'
-import socketIOClient                 from "socket.io-client"
 
 //COMPONENTS
 import config                         from '../components/setup/Config'
@@ -88,7 +87,6 @@ class GameContainer extends Component {
 
   //Before mounting the game if you are not a host && game is active you will get necessary data in your state
   componentWillMount(){
-    let socket
     if (!this.props.player.host){
       axios.get('http://localhost:3001' + this.props.history.location.pathname)
       .then((json)=>{
@@ -100,9 +98,6 @@ class GameContainer extends Component {
         } = this.props
         //If the game is active then you can join and get basic data otherwise you cant
         if (data.active){
-
-          //Connect to Websockets
-          socket = socketIOClient("localhost:3001")
           changeGameTitle(data.title)
           changeActiveStateAPI(data.active)
           setGameID(data._id)
@@ -115,9 +110,6 @@ class GameContainer extends Component {
         console.log(err)
       })
     } else {
-
-      //Connect to Websockets
-      socket = socketIOClient("localhost:3001")
       this.setState({loaded: true})
     }
   }

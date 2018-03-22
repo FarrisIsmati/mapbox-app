@@ -1,5 +1,6 @@
 //DEPENDENCIES
 import React, { Component }           from 'react'
+import socketIOClient                 from "socket.io-client"
 
 //COMPONENTS
 import ChatLog                        from './ChatLog'
@@ -21,6 +22,9 @@ class Play extends Component {
 
   submitChat (e, data, state) {
     e.preventDefault()
+    //Send Chat to Websockets
+    const socket = socketIOClient("localhost:3001")
+    socket.emit('send chat', {playerName: state.player.name, content: data})
     state.submitToChatlog({playerName: state.player.name, content: data})
   }
 
@@ -30,6 +34,12 @@ class Play extends Component {
     setTimeout(()=>{
       self.props.changeSetupPlayClass("play__holder ui__holder__active")
     }, 100)
+
+    //RECIEVE CHAT FOR WEBSOCKETS
+    const socket = socketIOClient("localhost:3001");
+    socket.on('send chat', (data) => {
+      console.log(data)
+    })
   }
 
   render(){
