@@ -24,7 +24,7 @@ class Play extends Component {
     e.preventDefault()
     //Send Chat to Websockets
     const socket = socketIOClient("localhost:3001")
-    socket.emit('send chat', {playerName: state.player.name, content: data})
+    socket.emit('send chat', {playerName: state.player.name, content: data, gameId: state.game.id})
     state.submitToChatlog({playerName: state.player.name, content: data})
   }
 
