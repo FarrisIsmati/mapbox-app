@@ -20,12 +20,11 @@ class Play extends Component {
     return length === 0 || length % 2 === 0 ? true : false
   }
 
+  //Send Chat to Websockets
   submitChat (e, data, state) {
     e.preventDefault()
-    //Send Chat to Websockets
     const socket = socketIOClient("localhost:3001")
     socket.emit('send chat', {playerName: state.player.name, content: data, gameId: state.game.id})
-    state.submitToChatlog({playerName: state.player.name, content: data})
   }
 
   componentDidMount() {
@@ -38,7 +37,7 @@ class Play extends Component {
     //RECIEVE CHAT FOR WEBSOCKETS
     const socket = socketIOClient("localhost:3001");
     socket.on('send chat', (data) => {
-      console.log(data)
+      this.props.submitToChatlog({playerName: data.playerName, content: data.content})
     })
   }
 
@@ -50,11 +49,18 @@ class Play extends Component {
           <div className="guesscounter__holder">
             <p>Questions left: <span>9</span></p>
           </div>
-          <UserInput
-            state={this.props}
-            parity={this.checkParity}
-            submitChat={this.submitChat}
-          />
+          { this.props.player.host ?           
+            <HostInput
+              state={this.props}
+              parity={this.checkParity}
+              submitChat={this.submitChat}
+            /> :
+            <UserInput
+              state={this.props}
+              parity={this.checkParity}
+              submitChat={this.submitChat}
+            />
+          }
         </div>
       </div>
     )
@@ -62,9 +68,3 @@ class Play extends Component {
 }
 
 export default Play
-
-// <HostInput
-//   state={this.props}
-//   parity={this.checkParity}
-//   submitChat={this.submitChat}
-// />

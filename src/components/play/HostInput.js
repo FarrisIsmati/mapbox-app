@@ -7,7 +7,7 @@ import Button1                        from '../common/buttons/Button1'
 
 const HostInput = (props) => (
   <div className="hostinput__holder">
-    {props.parity() ?
+    {!props.parity() ?
       <div className="hostinput__buttons">
         <Button1 click={e=>props.submitChat(e, "Yes", props.state)} fontSize="2em" name="Yes" />
         <Button1 click={e=>props.submitChat(e, "No", props.state)} fontSize="2em" name="No" />
