@@ -14,7 +14,8 @@ const Home = ({
     history,
     setHostType,
     setPlayerIP,
-    setGameID
+    setGameID,
+    setGuesses
   }) => (
   <div className="home__overlay">
     <div className="home__grid">
@@ -37,7 +38,8 @@ const Home = ({
             history,
             setPlayerIP,
             setHostType,
-            setGameID
+            setGameID,
+            setGuesses
           )}}
           className={'button__one button__one__active'}
         >
@@ -54,7 +56,8 @@ Home.propTypes = {
   history: PropTypes.object,
   setHostType: PropTypes.func,
   setPlayerIP: PropTypes.func,
-  setGameID: PropTypes.func
+  setGameID: PropTypes.func,
+  setGuesses: PropTypes.func
 }
 
 export default Home

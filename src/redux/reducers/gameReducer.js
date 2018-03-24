@@ -6,7 +6,8 @@ import {
         CHANGE_SET_MARKER_COORDS,
         CHANGE_ACTIVE_STATE,
         CHANGE_RESET_COORDS,
-        SUBMIT_TO_CHATLOG
+        SUBMIT_TO_CHATLOG,
+        SET_GUESSES
 }                            from "../constants/constants"
 
 //Exported only for testing purposes
@@ -14,6 +15,7 @@ export const defaultState = {
   title: '@%#!,',
   completed: false,
   active: false,
+  guesses: 15,
   mapMarkerCoords: [0,0],
   setMarkerCoords: [0,0],
   setMarkerRadius: '0',
@@ -54,6 +56,10 @@ export function gameReducer(state = defaultState, action) {
     case SUBMIT_TO_CHATLOG:
       return {
         ...state, chatLog: [...state.chatLog, action.payload]
+      }
+    case SET_GUESSES:
+      return {
+        ...state, ...action.payload
       }
     default:
       return state

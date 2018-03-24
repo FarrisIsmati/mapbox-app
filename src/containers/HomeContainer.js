@@ -9,26 +9,29 @@ import MapBackground                  from '../components/mapbox/MapBackground'
 
 //REDUX
 import { changeGameTitle,
-         setGameID
+         setGameID,
+         setGuesses
        }                              from '../redux/actions/gameActions'
 import { setHostType,
          setPlayerIP
        }                              from '../redux/actions/playerActions'
 
 //Upon Starting the game set host to active
-const startGame = (game,player,history,setPlayerIP,setHostType,setGameID) => {
+const startGame = (game,player,history,setPlayerIP,setHostType,setGameID,setGuesses) => {
   axios.post(`http://localhost:3001/game`, {
     title: game.title,
     completed: game.completed,
     active: game.active,
     host: {
       active: true
-    }
+    },
+    guesses: 15
   })
   .then((response) => {
     setGameID(response.data._id)
     setPlayerIP(response.data.host.ip)
     setHostType(true)
+    setGuesses(15)
     history.push('/game/' + response.data._id)
   })
   .catch((err) => {console.log(err)})
@@ -57,6 +60,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     setPlayerIP: (ip) => {
       dispatch(setPlayerIP(ip))
+    },
+    setGuesses: (guesses) => {
+      dispatch(setGuesses(guesses))
     }
   }
 }

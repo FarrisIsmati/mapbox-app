@@ -7,7 +7,9 @@ import {
         CHANGE_SET_MARKER_RADIUS,
         CHANGE_ACTIVE_STATE,
         CHANGE_RESET_COORDS,
-        SUBMIT_TO_CHATLOG
+        SUBMIT_TO_CHATLOG,
+        SET_GUESSES,
+        DECREMENT_GUESS
 }                            from "../constants/constants"
 
 //Changes title of the game
@@ -113,7 +115,6 @@ export function changeResetCoords(bool){
   }
 }
 
-//~~~To be handled with websockets
 export function submitToChatlog(chatData, id){
   return {
     type: SUBMIT_TO_CHATLOG,
@@ -122,3 +123,14 @@ export function submitToChatlog(chatData, id){
     }
   }
 }
+
+export function setGuesses(guesses){
+  return {
+    type: SET_GUESSES,
+    payload: { guesses }
+  }
+}
+// 
+// export function decrementGuess(){
+//
+// }

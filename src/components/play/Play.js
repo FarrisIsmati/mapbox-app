@@ -47,9 +47,9 @@ class Play extends Component {
         <div className="chatbox__holder">
           <ChatLog state={this.props}/>
           <div className="guesscounter__holder">
-            <p>Questions left: <span>9</span></p>
+            <p>Questions left: <span>{this.props.game.guesses}</span></p>
           </div>
-          { this.props.player.host ?           
+          { this.props.player.host ?
             <HostInput
               state={this.props}
               parity={this.checkParity}
