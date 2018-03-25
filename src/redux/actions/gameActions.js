@@ -9,7 +9,7 @@ import {
         CHANGE_RESET_COORDS,
         SUBMIT_TO_CHATLOG,
         SET_GUESSES,
-        DECREMENT_GUESS
+        CHANGE_GUESS
 }                            from "../constants/constants"
 
 //Changes title of the game
@@ -130,7 +130,21 @@ export function setGuesses(guesses){
     payload: { guesses }
   }
 }
-// 
-// export function decrementGuess(){
-//
-// }
+
+export function changeGuessAPI(amount){
+    return {
+      type: CHANGE_GUESS,
+      payload: amount
+    }
+}
+
+export function changeGuess(amount, host, id){
+  return function(dispatch){
+    axios.put('http://localhost:3001/game/guesses/' + id,{
+      "amount": amount,
+      "host": host
+    })
+    .then(()=> dispatch(changeGuessAPI(amount)))
+    .catch(err => console.log(err))
+  }
+}

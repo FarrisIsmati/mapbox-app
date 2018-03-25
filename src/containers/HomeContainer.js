@@ -17,6 +17,7 @@ import { setHostType,
        }                              from '../redux/actions/playerActions'
 
 //Upon Starting the game set host to active
+//#of guesses is set here (refactor into config component in future as a settable option)
 const startGame = (game,player,history,setPlayerIP,setHostType,setGameID,setGuesses) => {
   axios.post(`http://localhost:3001/game`, {
     title: game.title,

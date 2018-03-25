@@ -15,6 +15,7 @@ class Play extends Component {
     this.submitChat = this.submitChat.bind(this)
   }
 
+  //Checks parity of chat log to determine whether or not you can send a chat log
   checkParity() {
     const length = this.props.game.chatLog.length
     return length === 0 || length % 2 === 0 ? true : false
@@ -37,7 +38,12 @@ class Play extends Component {
     //RECIEVE CHAT FOR WEBSOCKETS
     const socket = socketIOClient("localhost:3001");
     socket.on('send chat', (data) => {
+      //Dispatch chat data to redux
       this.props.submitToChatlog({playerName: data.playerName, content: data.content})
+      //Change guesses left
+      if (this.checkParity() && data.content.toLowerCase() != "idk" && this.props.game.guesses > 0){
+        this.props.changeGuess(-1, this.props.player.host, this.props.game.id)
+      }
     })
   }
 

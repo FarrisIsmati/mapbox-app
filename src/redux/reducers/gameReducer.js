@@ -7,7 +7,8 @@ import {
         CHANGE_ACTIVE_STATE,
         CHANGE_RESET_COORDS,
         SUBMIT_TO_CHATLOG,
-        SET_GUESSES
+        SET_GUESSES,
+        CHANGE_GUESS
 }                            from "../constants/constants"
 
 //Exported only for testing purposes
@@ -60,6 +61,10 @@ export function gameReducer(state = defaultState, action) {
     case SET_GUESSES:
       return {
         ...state, ...action.payload
+      }
+    case CHANGE_GUESS:
+      return {
+        ...state, guesses: state.guesses + action.payload
       }
     default:
       return state

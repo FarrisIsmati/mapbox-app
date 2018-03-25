@@ -30,7 +30,8 @@ import {
           changeResetCoords,
           changeActiveStateAPI,
           setGameID,
-          submitToChatlog
+          submitToChatlog,
+          changeGuess
         }                             from '../redux/actions/gameActions'
 
 class GameContainer extends Component {
@@ -189,6 +190,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     submitToChatlog: (chatData, id) => {
       dispatch(submitToChatlog(chatData, id))
+    },
+    changeGuess: (amount, host, id) => {
+      dispatch(changeGuess(amount, host, id))
     }
   }
 }
