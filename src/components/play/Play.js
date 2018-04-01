@@ -1,6 +1,7 @@
 //DEPENDENCIES
 import React, { Component }           from 'react'
 import socketIOClient                 from "socket.io-client"
+import socketUtils                    from '../../utils/socketHelpers.js'
 
 //COMPONENTS
 import ChatLog                        from './ChatLog'
@@ -26,7 +27,7 @@ class Play extends Component {
   //Send Chat to Websockets
   submitChat (e, data, state) {
     e.preventDefault()
-    this.state.socket.emit('send chat', {playerName: state.player.name, content: data, gameId: state.game.id})
+    socketUtils.emitSendChat(state, data)
   }
 
   componentDidMount() {
@@ -35,25 +36,13 @@ class Play extends Component {
     setTimeout(()=>{
       self.props.changeSetupPlayClass("play__holder ui__holder__active")
     }, 100)
-
+    //Send connected message
     if (!this.props.player.host && this.props.player.name && this.props.game.active) {
-      this.state.socket.emit('player connect', this.props.player.name)
+      socketUtils.emitPlayerConnect(this.props)
     }
-
-    //RECIEVE CHAT FOR WEBSOCKETS
-    this.state.socket.on('send chat', (data) => {
-      console.log('CONNECTED  ')
-      //Dispatch chat data to redux
-      this.props.submitToChatlog({playerName: data.playerName, content: data.content})
-      //Change guesses left
-      if (this.checkParity() && data.content.toLowerCase() !== "idk" && this.props.game.guesses > 0){
-        this.props.changeGuess(-1, this.props.player.host, this.props.game.id)
-      }
-    })
-
-    this.state.socket.on('player connect', playerName => {
-      this.props.submitToChatlog({playerName: playerName, content: "Has connected!"})
-    })
+    //Websocket listeners
+    socketUtils.onSendChat(this.props, this.checkParity)
+    socketUtils.onPlayerConnect(this.props, "Has connected!")
   }
 
   render(){
