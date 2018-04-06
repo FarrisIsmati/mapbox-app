@@ -1,6 +1,7 @@
 //DEPENDENCIES
 import MapboxGeocoder                 from 'mapbox-gl-geocoder'
-import { store }                      from "../index"
+import { store }                      from '../index'
+import socketUtils                    from './socketHelpers'
 
 //REDUX
 import {
@@ -142,6 +143,8 @@ export function draggableMarker(map) {
     // Update the Point feature in `geojson` coordinates
     // and call setData to the source layer `point` on it.
     store.dispatch(changeMarkerCoords([coords.lng, coords.lat]))
+    socketUtils.emitUpdateMarkerCoordinates([coords.lng, coords.lat])
+
     geojson.features[0].geometry.coordinates = store.getState().game.mapMarkerCoords
     map.getSource('point').setData(geojson)
   }
@@ -173,6 +176,7 @@ export function geocoder(map, token) {
   geocode.on('result', (ev) => {
     if (store.getState().player.activeHandler) {
       store.dispatch(changeMarkerCoords(ev.result.geometry.coordinates))
+      socketUtils.emitUpdateMarkerCoordinates(ev.result.geometry.coordinates)
       map.getSource('point').setData(ev.result.geometry)
     }
   })
@@ -220,7 +224,7 @@ export function setMarkerOnUpdate(map, game) {
   //I'm unsure if I'm mutating state with this line
   map.getSource('point').setData(geojson)
   map.flyTo({
-    center: [0,0],
+    center: game.mapMarkerCoords,
     zoom: 3
   })
 }

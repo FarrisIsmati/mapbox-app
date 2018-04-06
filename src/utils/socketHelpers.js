@@ -24,5 +24,14 @@ export default {
   },
   emitPlayerConnect: function(props){
     socket.emit('player connect', props.player.name)
+  },
+  onUpdateMarkerCoordinates: function(props){
+    socket.on('update marker coordinates', coordinates => {
+      console.log(coordinates)
+      props.changeMarkerCoords(coordinates)
+    })
+  },
+  emitUpdateMarkerCoordinates: function(coordinates){
+    socket.emit('update marker coordinates', coordinates)
   }
 }

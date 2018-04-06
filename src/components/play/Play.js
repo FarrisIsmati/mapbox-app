@@ -43,6 +43,7 @@ class Play extends Component {
     //Websocket listeners
     socketUtils.onSendChat(this.props, this.checkParity)
     socketUtils.onPlayerConnect(this.props, "Has connected!")
+    socketUtils.onUpdateMarkerCoordinates(this.props)
   }
 
   render(){

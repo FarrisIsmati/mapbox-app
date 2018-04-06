@@ -53,6 +53,11 @@ class MapGame extends Component {
     if (this.props.game.resetCoords) {
       setMarkerOnUpdate(this.state.map, this.props.game)
     }
+
+    //Update the map for the host if the connected player moves the map
+    if (this.props.player.host && this.props.game.active) {
+      setMarkerOnUpdate(this.state.map, this.props.game)
+    }
   }
 
   componentWillUnmount() {
