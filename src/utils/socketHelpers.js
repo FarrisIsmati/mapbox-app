@@ -15,7 +15,7 @@ export default {
     })
   },
   emitSendChat: function(props, data){
-    socket.emit('send chat', {playerName: props.player.name, content: data, gameId: props.game.id})
+    socket.emit('send chat', {playerName: props.state.player.name, content: data, gameId: props.state.game.id})
   },
   onPlayerConnect: function(props, message){
     socket.on('player connect', playerName => {
@@ -24,6 +24,11 @@ export default {
   },
   emitPlayerConnect: function(props){
     socket.emit('player connect', props.player.name)
+  },
+  onPlayerDisconnect: function(props, message){
+    socket.on('player disconnect', () => {
+        props.submitToChatlog({playerName: 'Player', content: message})
+    })
   },
   onUpdateMarkerCoordinates: function(props){
     socket.on('update marker coordinates', coordinates => {

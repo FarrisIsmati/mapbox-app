@@ -1,6 +1,5 @@
 //DEPENDENCIES
 import React, { Component }           from 'react'
-import socketIOClient                 from "socket.io-client"
 import socketUtils                    from '../../utils/socketHelpers.js'
 
 //COMPONENTS
@@ -11,11 +10,21 @@ import UserInput                      from './UserInput'
 class Play extends Component {
   constructor(){
     super()
-    this.state = {
-      socket: socketIOClient("localhost:3001")
-    }
     this.checkParity = this.checkParity.bind(this)
     this.submitChat = this.submitChat.bind(this)
+    this.socketListeners = this.socketListeners.bind(this)
+  }
+
+  socketListeners() {
+    //Send connected message
+    if (!this.props.player.host && this.props.player.name && this.props.game.active) {
+      socketUtils.emitPlayerConnect(this.props)
+    }
+    //Websocket listeners
+    socketUtils.onSendChat(this.props, this.checkParity)
+    socketUtils.onPlayerConnect(this.props, "Has connected!")
+    socketUtils.onUpdateMarkerCoordinates(this.props)
+    socketUtils.onPlayerDisconnect(this.props, 'has disconnected :(')
   }
 
   //Checks parity of chat log to determine whether or not you can send a chat log
@@ -36,14 +45,7 @@ class Play extends Component {
     setTimeout(()=>{
       self.props.changeSetupPlayClass("play__holder ui__holder__active")
     }, 100)
-    //Send connected message
-    if (!this.props.player.host && this.props.player.name && this.props.game.active) {
-      socketUtils.emitPlayerConnect(this.props)
-    }
-    //Websocket listeners
-    socketUtils.onSendChat(this.props, this.checkParity)
-    socketUtils.onPlayerConnect(this.props, "Has connected!")
-    socketUtils.onUpdateMarkerCoordinates(this.props)
+    this.socketListeners()
   }
 
   render(){
