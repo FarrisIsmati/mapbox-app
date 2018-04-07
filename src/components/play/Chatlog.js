@@ -1,5 +1,6 @@
 //DEPENDENCIES
 import React                          from 'react'
+import PropTypes                      from 'prop-types'
 
 const Response = (data) => data.map((res, i) => (
   <div key={i}>
@@ -8,7 +9,6 @@ const Response = (data) => data.map((res, i) => (
   </div>
 ))
 
-
 const ChatLog = (state) => (
   <div className="chatlog__holder">
     <div>
@@ -16,5 +16,9 @@ const ChatLog = (state) => (
     </div>
   </div>
 )
+
+ChatLog.propTypes = {
+  state: PropTypes.object,
+}
 
 export default ChatLog

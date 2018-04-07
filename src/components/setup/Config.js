@@ -8,7 +8,6 @@ import Input1                         from '../common/inputs/Input1'
 class Config extends Component {
   constructor(){
     super()
-
     this.state={ markerRadius: '0' }
 
     this.setMarkerRadius = this.setMarkerRadius.bind(this)
