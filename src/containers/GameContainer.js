@@ -13,7 +13,8 @@ import play                           from '../components/play/Play'
 import {
           changePlayerName,
           setHostType,
-          changeActiveHandler
+          changeActiveHandler,
+          setOpponentName
         }                             from '../redux/actions/playerActions'
 import {
           changeRequestHostName,
@@ -54,8 +55,8 @@ class GameContainer extends Component {
     let self = this
     this.props.changeNameHolderClass('name__holder name__holder__deactive')
     axios.put('http://localhost:3001/game/name/' + this.props.game.id,{
-      "name": this.props.player.name,
-      "host": this.props.player.host
+      'name': this.props.player.name,
+      'host': this.props.player.host
     })
     .then(()=>{
       setTimeout(()=>{
@@ -193,6 +194,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeGuess: (amount, host, id) => {
       dispatch(changeGuess(amount, host, id))
+    },
+    setOpponentName: (name) => {
+      dispatch(setOpponentName(name))
     }
   }
 }

@@ -3,6 +3,9 @@ import socketIOClient from "socket.io-client"
 const socket = socketIOClient("localhost:3001")
 
 export default {
+  emitClientData: function(data){
+    socket.emit('recieve client', data)
+  },
   onSendChat: function(props, checkParity){
     socket.on('send chat', data => {
       console.log('CONNECTED')
@@ -26,8 +29,8 @@ export default {
     socket.emit('player connect', props.player.name)
   },
   onPlayerDisconnect: function(props, message){
-    socket.on('player disconnect', () => {
-        props.submitToChatlog({playerName: 'Player', content: message})
+    socket.on('player disconnect', playerName => {
+        props.submitToChatlog({playerName: playerName, content: message})
     })
   },
   onUpdateMarkerCoordinates: function(props){

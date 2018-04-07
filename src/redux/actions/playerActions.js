@@ -3,7 +3,8 @@ import {
         CHANGE_PLAYER_NAME,
         SET_HOST_TYPE,
         CHANGE_ACTIVE_HANDLER,
-        SET_PLAYER_IP
+        SET_PLAYER_IP,
+        SET_OPPONENT_NAME
 }                            from "../constants/constants"
 
 
@@ -54,6 +55,15 @@ export function setPlayerIP(ip) {
     type: SET_PLAYER_IP,
     payload: {
       ip: ip
+    }
+  }
+}
+
+export function setOpponentName(name) {
+  return {
+    type: SET_OPPONENT_NAME,
+    payload: {
+      name: name
     }
   }
 }
