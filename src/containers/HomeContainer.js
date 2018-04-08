@@ -24,8 +24,7 @@ const startGame = (game,player,history,setPlayerIP,setHostType,setGameID,setGues
     completed: game.completed,
     active: game.active,
     host: {
-      active: true,
-      connected: true
+      active: true
     },
     guesses: 15
   })

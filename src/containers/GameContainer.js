@@ -87,7 +87,7 @@ class GameContainer extends Component {
     }, 1600)
   }
 
-  //Before mounting the game if you are not a host && game is active you will get necessary data in your state
+  //Before mounting the game if you are not a host && game is active && game is not full you will get necessary data in your state
   componentWillMount(){
     if (!this.props.player.host){
       axios.get('http://localhost:3001' + this.props.history.location.pathname)
@@ -99,7 +99,8 @@ class GameContainer extends Component {
           setGameID
         } = this.props
         //If the game is active then you can join and get basic data otherwise you cant
-        if (data.active){
+        if (data.active && !data.player){
+          console.log(data)
           changeGameTitle(data.title)
           changeActiveStateAPI(data.active)
           setGameID(data._id)
