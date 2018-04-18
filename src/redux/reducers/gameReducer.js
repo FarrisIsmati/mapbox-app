@@ -16,7 +16,7 @@ export const defaultState = {
   title: '@%#!,',
   completed: false,
   active: false,
-  guesses: 15,
+  guesses: 5,
   mapMarkerCoords: [0,0],
   setMarkerCoords: [0,0],
   setMarkerRadius: '0',

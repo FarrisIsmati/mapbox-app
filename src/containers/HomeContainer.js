@@ -26,13 +26,14 @@ const startGame = (game,player,history,setPlayerIP,setHostType,setGameID,setGues
     host: {
       active: true
     },
-    guesses: 15
+    guesses: 5
   })
   .then((response) => {
+    console.log('Response Success')
     setGameID(response.data._id)
     setPlayerIP(response.data.host.ip)
     setHostType(true)
-    setGuesses(15)
+    setGuesses(5)
     history.push('/game/' + response.data._id)
   })
   .catch((err) => {console.log(err)})

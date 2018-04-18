@@ -227,6 +227,6 @@ export function setMarkerOnUpdate(map, game) {
   map.getSource('point').setData(geojson)
   map.flyTo({
     center: game.mapMarkerCoords,
-    zoom: 3
+    zoom: 6
   })
 }
