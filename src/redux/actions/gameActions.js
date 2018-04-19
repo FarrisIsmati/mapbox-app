@@ -138,13 +138,13 @@ export function changeGuessAPI(amount){
     }
 }
 
+//This async redux action returns a promise unlike the others
 export function changeGuess(amount, host, id){
-  return function(dispatch){
+  return (dispatch)=>
     axios.put('http://localhost:3001/game/guesses/' + id,{
       "amount": amount,
       "host": host
     })
     .then(()=> dispatch(changeGuessAPI(amount)))
     .catch(err => console.log(err))
-  }
 }

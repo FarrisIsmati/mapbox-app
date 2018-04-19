@@ -193,9 +193,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     submitToChatlog: (chatData, id) => {
       dispatch(submitToChatlog(chatData, id))
     },
-    changeGuess: (amount, host, id) => {
-      dispatch(changeGuess(amount, host, id))
-    },
+    //This async redux action returns a promise unlike the others
+    changeGuess: (amount, host, id) => dispatch(changeGuess(amount, host, id)),
     setOpponentName: (name) => {
       dispatch(setOpponentName(name))
     }

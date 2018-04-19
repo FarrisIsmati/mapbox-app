@@ -1,4 +1,5 @@
-import socketIOClient from "socket.io-client"
+import socketIOClient                 from "socket.io-client"
+import axios                          from 'axios'
 
 const socket = socketIOClient("localhost:3001")
 
@@ -13,14 +14,12 @@ export default {
       props.submitToChatlog({playerName: data.playerName, content: data.content})
       //Change guesses left
       if (checkParity() && data.content.toLowerCase() !== "idk" && data.guesses > 0 ){
-
-        //You need to call backend route to update guess there too and change guess only if
-        //The update is sucessfull
-        //You also need to add game complete to emit send chat data
-        //You need to make sure this wont run if game is complete
-        //You need to set game to fail if guesses run out
-
-        props.changeGuess(-1, props.player.host, props.game.id)
+        props.changeGuess(-1, props.player.host, props.game.id).then(()=>{
+          if (data.guesses - 1 == 0){
+            console.log('This game is ovah!')
+            //Call backend make game end :) with async redux
+          }
+        })
       }
     })
   },
