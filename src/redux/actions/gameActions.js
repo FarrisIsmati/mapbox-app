@@ -9,7 +9,8 @@ import {
         CHANGE_RESET_COORDS,
         SUBMIT_TO_CHATLOG,
         SET_GUESSES,
-        CHANGE_GUESS
+        CHANGE_GUESS,
+        CHANGE_COMPLETE_GAME
 }                            from "../constants/constants"
 
 //Changes title of the game
@@ -146,5 +147,21 @@ export function changeGuess(amount, host, id){
       "host": host
     })
     .then(()=> dispatch(changeGuessAPI(amount)))
+    .catch(err => console.log(err))
+}
+
+export function changeCompleteGameAPI(completed){
+  return {
+    type: CHANGE_COMPLETE_GAME,
+    payload: {completed}
+  }
+}
+
+export function changeCompleteGame(completed, id){
+  return (dispatch) =>
+    axios.put('http://localhost:3001/game/completed/' + id,{
+      "completed": completed
+    })
+    .then(()=> dispatch(changeCompleteGameAPI(completed)))
     .catch(err => console.log(err))
 }

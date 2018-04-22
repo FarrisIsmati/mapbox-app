@@ -15,9 +15,10 @@ export default {
       //Change guesses left
       if (checkParity() && data.content.toLowerCase() !== "idk" && data.guesses > 0 ){
         props.changeGuess(-1, props.player.host, props.game.id).then(()=>{
+          //Handle a loss (Out of guesses)
           if (data.guesses - 1 == 0){
-            console.log('This game is ovah!')
-            //Call backend make game end :) with async redux
+            props.changeCompleteGame(true, props.game.id)
+            props.submitToChatlog({playerName: "GOD", content: "Game is over :("})
           }
         })
       }

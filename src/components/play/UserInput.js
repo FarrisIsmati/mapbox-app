@@ -9,7 +9,7 @@ import Input1                         from '../common/inputs/Input1'
 //Input only on even number of inputs
 const UserInput = (props) => (
   <div className="userinput__holder">
-    {props.parity(props.state) ?
+    {props.parity() && !props.state.game.completed ?
       <Input1
       onSubmit={e=>{props.submitChat(e, e.target[0].value, props); e.target[0].value = ""}}
       className="input input__visible input__medium"/>:

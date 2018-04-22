@@ -32,7 +32,8 @@ import {
           changeActiveStateAPI,
           setGameID,
           submitToChatlog,
-          changeGuess
+          changeGuess,
+          changeCompleteGame
         }                             from '../redux/actions/gameActions'
 
 class GameContainer extends Component {
@@ -98,8 +99,8 @@ class GameContainer extends Component {
           changeActiveStateAPI,
           setGameID
         } = this.props
-        //If the game is active then you can join and get basic data otherwise you cant
-        if (data.active && !data.player){
+        //If the game is active, not completed, then you can join and get basic data otherwise you cant
+        if (data.active && !data.player && !data.completed){
           console.log(data)
           changeGameTitle(data.title)
           changeActiveStateAPI(data.active)
@@ -192,6 +193,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     submitToChatlog: (chatData, id) => {
       dispatch(submitToChatlog(chatData, id))
+    },
+    changeCompleteGame: (completed, id) => {
+      dispatch(changeCompleteGame(completed, id))
     },
     //This async redux action returns a promise unlike the others
     changeGuess: (amount, host, id) => dispatch(changeGuess(amount, host, id)),
