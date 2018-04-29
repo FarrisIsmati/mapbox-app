@@ -4,8 +4,13 @@ import PropTypes                      from 'prop-types'
 
 const Response = (data) => data.map((res, i) => (
   <div key={i}>
-    <p className="chatlog__playername">{res.playerName}:</p>
-    <p className="chatlog__playercontent">{res.content}</p>
+    {res.playerName ?
+      <div>
+        <p className="chatlog__playername">{res.playerName}:</p>
+        <p className="chatlog__playercontent">{res.content}</p>
+      </div>:
+      <p className="chatlog__playercontent">{res.content}</p>
+    }
   </div>
 ))
 

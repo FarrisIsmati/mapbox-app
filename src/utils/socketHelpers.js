@@ -18,7 +18,10 @@ export default {
           //Handle a loss (Out of guesses)
           if (data.guesses - 1 == 0){
             props.changeCompleteGame(true, props.game.id)
-            props.submitToChatlog({playerName: "GOD", content: "Game is over :("})
+            setTimeout(function(){
+              props.submitToChatlog({content: "No more guesses left!"})
+              props.submitToChatlog({content: "The game is over :("})
+            }, 1000);
           }
         })
       }

@@ -1,5 +1,6 @@
 import Update                               from 'immutability-helper';
 import * as constant                        from '../../redux/constants/constants'
+import fetchMock                            from 'fetch-mock'
 
 //ACTION IMPORTS
 import * as actions                         from '../../redux/actions/gameActions'
@@ -25,6 +26,36 @@ let state = {
 }
 
 //TESTS
+//ASYNC REQUESTS
+describe('async actions', () => {
+  afterEach(() => {
+    fetchMock.reset()
+    fetchMock.restore()
+  })
+​
+//   it('creates FETCH_TODOS_SUCCESS when fetching todos has been done', () => {
+//     fetchMock.getOnce('/todos', {
+//       body: {
+//         todos: ['do something']
+//       }, headers: {
+//         'content-type': 'application/json'
+//       }
+//     })
+// ​
+// ​
+//     const expectedActions = [
+//       { type: types.FETCH_TODOS_REQUEST },
+//       { type: types.FETCH_TODOS_SUCCESS, body: { todos: ['do something'] } }
+//     ]
+//     const store = mockStore({ todos: [] })
+// ​
+//     return store.dispatch(actions.fetchTodos()).then(() => {
+//       // return of async actions
+//       expect(store.getActions()).toEqual(expectedActions)
+//     })
+// })
+})
+
 //GAME ACTIONS/REDUCERS
 describe('REDUX ACTIONS GAME', () => {
   it('should create an action to change game title', () => {
@@ -47,6 +78,15 @@ describe('REDUX ACTIONS GAME', () => {
       }
     }
     expect(actions.changeMarkerCoords(coords)).toEqual(expectedAction)
+  })
+
+  it('should create an action to set the game ID', () => {
+    const id = '1aC'
+    const expectedAction = {
+      type: constant.SET_GAME_ID,
+      payload: { id }
+    }
+    expect(actions.setGameID(id)).toEqual(expectedAction)
   })
 })
 
