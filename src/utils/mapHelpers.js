@@ -2,6 +2,7 @@
 import MapboxGeocoder                 from 'mapbox-gl-geocoder'
 import { store }                      from '../index'
 import socketUtils                    from './socketHelpers'
+import axios                          from 'axios'
 
 //REDUX
 import {
@@ -207,6 +208,15 @@ export function setRadiusOnUpdate(map, game) {
     if (!coordsEqual(newCoords,setCoords) || game.setMarkerRadius !== setRadius){
       let geojson = createGeoJSONCircle(game.setMarkerCoords, game.setMarkerRadius).data
       map.getSource('markedRadius').setData(geojson)
+
+      //Store the meta data of the radius in the backend
+      axios.put('http://localhost:3001/game/radiusMetaData/' + game.id,{
+        "radiusMetaData": geojson.features[0].geometry.coordinates[0]
+      })
+      .then(()=>{
+        map.getSource('markedRadius').setData(geojson)
+      })
+      .catch(err => console.log(err))
     }
   }
 }

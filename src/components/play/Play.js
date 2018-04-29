@@ -1,6 +1,7 @@
 //DEPENDENCIES
 import React, { Component }           from 'react'
 import socketUtils                    from '../../utils/socketHelpers.js'
+import axios                          from 'axios'
 
 //COMPONENTS
 import ChatLog                        from './ChatLog'
@@ -25,19 +26,29 @@ class Play extends Component {
   submitGuess() {
     console.log('User submits guess')
     if (this.props.game.guesses > 1){
-      //If it is a match?
-        //Run success
-        //Set Game completed
-      //Else
-        // this.props.changeGuess(-1, this.props.player.host, this.props.game.id).then(()=>{
-        //   if (this.props.game.guesses - 1 == 0){
-        //     this.props.changeCompleteGame(true, props.game.id)
-        //     setTimeout(function(){
-        //       this.props.submitToChatlog({content: "No more guesses left!"})
-        //       this.props.submitToChatlog({content: "The game is over :("})
-        //     }, 1000);
-        //   }
-        // })
+      //Store the meta data of the radius in the backend
+        axios.get('http://localhost:3001/game/checkRadiusMetaData/' + this.props.game.id + '/' + this.props.game.mapMarkerCoords[0] + '/' + this.props.game.mapMarkerCoords[1])
+        .then((result)=>{
+          console.log(result)
+          if (result.data){
+              //Run success
+              //Set Game completed
+              console.log('You win!')
+            } else {
+              //Else
+                // this.props.changeGuess(-1, this.props.player.host, this.props.game.id).then(()=>{
+                //   if (this.props.game.guesses - 1 == 0){
+                //     this.props.changeCompleteGame(true, props.game.id)
+                //     setTimeout(function(){
+                //       this.props.submitToChatlog({content: "No more guesses left!"})
+                //       this.props.submitToChatlog({content: "The game is over :("})
+                //     }, 1000);
+                //   }
+                // })
+              console.log('fail')
+            }
+        })
+        .catch(err=>console.log(err))
     }
 
   }
