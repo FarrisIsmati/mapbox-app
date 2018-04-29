@@ -17,8 +17,8 @@ const UserInput = (props) => (
         onSubmit={e=>e.preventDefault()}
         className="input input__deactive input__medium"/>
     }
-    <Button1 fontSize="2em" name="Guess" />
-    </div>
+    <Button1 click={e=>props.submitGuess()} fontSize="2em" name="Guess" />
+  </div>
 )
 
 UserInput.propTypes = {

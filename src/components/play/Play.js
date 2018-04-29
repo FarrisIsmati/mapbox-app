@@ -10,6 +10,8 @@ import UserInput                      from './UserInput'
 class Play extends Component {
   constructor(){
     super()
+
+    this.submitGuess = this.submitGuess.bind(this)
     this.checkParity = this.checkParity.bind(this)
     this.submitChat = this.submitChat.bind(this)
   }
@@ -18,6 +20,26 @@ class Play extends Component {
   checkParity() {
     let length = this.props.game.chatLog.length - 1
     return length <= 0 || length % 2 === 0 ? true : false
+  }
+
+  submitGuess() {
+    console.log('User submits guess')
+    if (this.props.game.guesses > 1){
+      //If it is a match?
+        //Run success
+        //Set Game completed
+      //Else
+        // this.props.changeGuess(-1, this.props.player.host, this.props.game.id).then(()=>{
+        //   if (this.props.game.guesses - 1 == 0){
+        //     this.props.changeCompleteGame(true, props.game.id)
+        //     setTimeout(function(){
+        //       this.props.submitToChatlog({content: "No more guesses left!"})
+        //       this.props.submitToChatlog({content: "The game is over :("})
+        //     }, 1000);
+        //   }
+        // })
+    }
+
   }
 
   //Send Chat to Websockets
@@ -61,6 +83,7 @@ class Play extends Component {
             <UserInput
               state={this.props}
               parity={this.checkParity}
+              submitGuess={this.submitGuess}
               submitChat={this.submitChat}
             />
           }
