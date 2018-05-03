@@ -30,6 +30,24 @@ export default {
   emitSendChat: function(props, data){
     socket.emit('send chat', {playerName: props.state.player.name, content: data, gameId: props.state.game.id, guesses: props.state.game.guesses})
   },
+  //Sends a message without reducing guesses or sending a player name
+  onSendMessage: function(props){
+    socket.on('send message', data => {
+      props.submitToChatlog({content: data.content})
+    })
+  },
+  emitSendMessage: function(props, data){
+    socket.emit('send message', {content: data, gameId: props.game.id})
+  },
+  //Reduces guesses without sending a chat
+  onReduceGuess: function(props){
+    socket.on('reduce guess', data => {
+      props.changeGuess(-1, true, props.game.id)
+    })
+  },
+  emitReduceGuess: function(props){
+    socket.emit('reduce guess', {gameId: props.game.id})
+  },
   onPlayerConnect: function(props, message){
     socket.on('player connect', playerName => {
       props.submitToChatlog({playerName: playerName, content: message})

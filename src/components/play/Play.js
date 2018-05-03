@@ -31,20 +31,20 @@ class Play extends Component {
         .then((result)=>{
           console.log(result)
           if (result.data){
-              //Run success
-              //Set Game completed
-              console.log('You win!')
+              this.props.changeCompleteGame(true, this.props.game.id)
+              socketUtils.emitSendMessage(this.props, `${this.props.player.name} guessed correctly, congrats!`)
+              socketUtils.emitSendMessage(this.props, 'The game is over')
             } else {
-              //Else
-                // this.props.changeGuess(-1, this.props.player.host, this.props.game.id).then(()=>{
-                //   if (this.props.game.guesses - 1 == 0){
-                //     this.props.changeCompleteGame(true, props.game.id)
-                //     setTimeout(function(){
-                //       this.props.submitToChatlog({content: "No more guesses left!"})
-                //       this.props.submitToChatlog({content: "The game is over :("})
-                //     }, 1000);
-                //   }
-                // })
+              //REDUCE GUESS TRY YOUR NEW SOCKET
+              // this.props.changeGuess(-1, this.props.player.host, this.props.game.id).then(()=>{
+              //   if (this.props.game.guesses - 1 == 0){
+              //     this.props.changeCompleteGame(true, props.game.id)
+              //     setTimeout(function(){
+              //       this.props.submitToChatlog({content: "No more guesses left!"})
+              //       this.props.submitToChatlog({content: "The game is over :("})
+              //     }, 1000);
+              //   }
+              // })
               console.log('fail')
             }
         })
@@ -72,6 +72,7 @@ class Play extends Component {
     //Websocket listeners
     socketUtils.emitClientData(this.props)
     socketUtils.onSendChat(this.props, this.checkParity)
+    socketUtils.onSendMessage(this.props)
     socketUtils.onPlayerConnect(this.props, "Has connected!")
     socketUtils.onUpdateMarkerCoordinates(this.props)
     socketUtils.onPlayerDisconnect(this.props, "Has Disconnected!")
