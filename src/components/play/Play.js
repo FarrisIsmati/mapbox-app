@@ -24,28 +24,22 @@ class Play extends Component {
   }
 
   submitGuess() {
-    console.log('User submits guess')
-    if (this.props.game.guesses > 1){
+    if (this.props.game.guesses > 0){
       //Store the meta data of the radius in the backend
         axios.get('http://localhost:3001/game/checkRadiusMetaData/' + this.props.game.id + '/' + this.props.game.mapMarkerCoords[0] + '/' + this.props.game.mapMarkerCoords[1])
         .then((result)=>{
-          console.log(result)
-          if (result.data){
+          //If you guessed correctly (result.data)
+          if (result.data && !this.props.game.completed){
               this.props.changeCompleteGame(true, this.props.game.id)
               socketUtils.emitSendMessage(this.props, `${this.props.player.name} guessed correctly, congrats!`)
               socketUtils.emitSendMessage(this.props, 'The game is over')
             } else {
-              //REDUCE GUESS TRY YOUR NEW SOCKET
-              // this.props.changeGuess(-1, this.props.player.host, this.props.game.id).then(()=>{
-              //   if (this.props.game.guesses - 1 == 0){
-              //     this.props.changeCompleteGame(true, props.game.id)
-              //     setTimeout(function(){
-              //       this.props.submitToChatlog({content: "No more guesses left!"})
-              //       this.props.submitToChatlog({content: "The game is over :("})
-              //     }, 1000);
-              //   }
-              // })
-              console.log('fail')
+              socketUtils.emitReduceGuess(this.props)
+              if (this.props.game.guesses - 1 < 1){
+                this.props.changeCompleteGame(true, this.props.game.id)
+                socketUtils.emitSendMessage(this.props, `${this.props.player.name}, you lost :(`)
+                socketUtils.emitSendMessage(this.props, 'The game is over')
+              }
             }
         })
         .catch(err=>console.log(err))
@@ -76,6 +70,7 @@ class Play extends Component {
     socketUtils.onPlayerConnect(this.props, "Has connected!")
     socketUtils.onUpdateMarkerCoordinates(this.props)
     socketUtils.onPlayerDisconnect(this.props, "Has Disconnected!")
+    socketUtils.onReduceGuess(this.props)
   }
 
   render(){
