@@ -40,7 +40,7 @@ function changeActiveHandlerAPI(bool){
 //Sets who can handle the marker
 export function changeActiveHandler(id, isActive, isHost){
   return function(dispatch){
-    axios.put('http://localhost:3001/game/activeHandler/' + id,{
+    axios.put('https://mapboxwhereisit.herokuapp.com/game/activeHandler/' + id,{
       "host": isHost,
       "active": isActive
     })

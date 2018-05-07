@@ -56,7 +56,7 @@ export function changeActiveStateAPI(bool){
 
 export function changeActiveState(id, bool){
   return function(dispatch){
-    axios.put('http://localhost:3001/game/active/' + id,{
+    axios.put('https://mapboxwhereisit.herokuapp.com/game/active/' + id,{
       "active": bool
     })
     .then(()=>{
@@ -77,7 +77,7 @@ function changeSetMarkerCoordsAPI(coords){
 
 export function changeSetMarkerCoords(id, coords){
   return function(dispatch){
-    axios.put('http://localhost:3001/game/coordinates/' + id,{
+    axios.put('https://mapboxwhereisit.herokuapp.com/game/coordinates/' + id,{
       "coordinates": coords
     })
     .then(()=>{
@@ -98,7 +98,7 @@ function changeSetMarkerRadiusAPI(radius){
 
 export function changeSetMarkerRadius(id, radius){
   return function(dispatch){
-    axios.put('http://localhost:3001/game/radius/' + id,{
+    axios.put('https://mapboxwhereisit.herokuapp.com/game/radius/' + id,{
       "radius": radius
     })
     .then(()=>{
@@ -142,7 +142,7 @@ export function changeGuessAPI(amount){
 //This async redux action returns a promise unlike the others
 export function changeGuess(amount, host, id){
   return (dispatch)=>
-    axios.put('http://localhost:3001/game/guesses/' + id,{
+    axios.put('https://mapboxwhereisit.herokuapp.com/game/guesses/' + id,{
       "amount": amount,
       "host": host
     })
@@ -159,7 +159,7 @@ export function changeCompleteGameAPI(completed){
 
 export function changeCompleteGame(completed, id){
   return (dispatch) =>
-    axios.put('http://localhost:3001/game/completed/' + id,{
+    axios.put('https://mapboxwhereisit.herokuapp.com/game/completed/' + id,{
       "completed": completed
     })
     .then(()=> dispatch(changeCompleteGameAPI(completed)))

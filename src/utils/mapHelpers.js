@@ -210,7 +210,7 @@ export function setRadiusOnUpdate(map, game) {
       map.getSource('markedRadius').setData(geojson)
 
       //Store the meta data of the radius in the backend
-      axios.put('http://localhost:3001/game/radiusMetaData/' + game.id,{
+      axios.put('https://mapboxwhereisit.herokuapp.com/game/radiusMetaData/' + game.id,{
         "radiusMetaData": geojson.features[0].geometry.coordinates[0]
       })
       .then(()=>{

@@ -1,7 +1,7 @@
 import socketIOClient                 from "socket.io-client"
 import axios                          from 'axios'
 
-const socket = socketIOClient("localhost:3001")
+const socket = socketIOClient("https://mapboxwhereisit.herokuapp.com")
 
 export default {
   emitClientData: function(data){

@@ -55,7 +55,7 @@ class GameContainer extends Component {
     input.disabled = true
     let self = this
     this.props.changeNameHolderClass('name__holder name__holder__deactive')
-    axios.put('http://localhost:3001/game/name/' + this.props.game.id,{
+    axios.put('https://mapboxwhereisit.herokuapp.com/game/name/' + this.props.game.id,{
       'name': this.props.player.name,
       'host': this.props.player.host
     })
@@ -91,7 +91,7 @@ class GameContainer extends Component {
   //Before mounting the game if you are not a host && game is active && game is not full you will get necessary data in your state
   componentWillMount(){
     if (!this.props.player.host){
-      axios.get('http://localhost:3001' + this.props.history.location.pathname)
+      axios.get('https://mapboxwhereisit.herokuapp.com' + this.props.history.location.pathname)
       .then((json)=>{
         const data = json.data
         let {

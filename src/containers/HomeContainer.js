@@ -19,7 +19,7 @@ import { setHostType,
 //Upon Starting the game set host to active
 //#of guesses is set here (refactor into config component in future as a settable option)
 const startGame = (game,player,history,setPlayerIP,setHostType,setGameID,setGuesses) => {
-  axios.post(`http://localhost:3001/game`, {
+  axios.post(`https://mapboxwhereisit.herokuapp.com/game`, {
     title: game.title,
     completed: game.completed,
     active: game.active,
