@@ -101,7 +101,6 @@ class GameContainer extends Component {
         } = this.props
         //If the game is active, not completed, then you can join and get basic data otherwise you cant
         if (data.active && !data.player && !data.completed){
-          console.log(data)
           changeGameTitle(data.title)
           changeActiveStateAPI(data.active)
           setGameID(data._id)

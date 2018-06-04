@@ -26,7 +26,7 @@ const startGame = (game,player,history,setPlayerIP,setHostType,setGameID,setGues
     host: {
       active: true
     },
-    guesses: 5
+    guesses: 10
   })
   .then((response) => {
     setGameID(response.data._id)
