@@ -18,6 +18,10 @@
 .setupconfig__grid {
   flex: 1;
 
+  &  form {
+    width: 3em;
+  }
+
   &__start {
     display: flex;
 

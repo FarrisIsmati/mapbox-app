@@ -9,4 +9,7 @@
   padding: $chatboxpadding;
   align-items: center;
   justify-content: space-between;
+  & div {
+    margin-right: 10%;
+  }
 }
