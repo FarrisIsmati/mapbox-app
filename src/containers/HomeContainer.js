@@ -32,7 +32,7 @@ const startGame = (game,player,history,setPlayerIP,setHostType,setGameID,setGues
     setGameID(response.data._id)
     setPlayerIP(response.data.host.ip)
     setHostType(true)
-    setGuesses(5)
+    setGuesses(10)
     history.push('/game/' + response.data._id)
   })
   .catch((err) => {console.log(err)})
