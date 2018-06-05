@@ -24,7 +24,7 @@ class Play extends Component {
   }
 
   submitGuess() {
-    if (this.props.game.guesses > 0){
+    if (this.props.game.guesses > 0 && !this.props.game.completed){
       //Store the meta data of the radius in the backend
         axios.get('https://mapboxwhereisit.herokuapp.com/game/checkRadiusMetaData/' + this.props.game.id + '/' + this.props.game.mapMarkerCoords[0] + '/' + this.props.game.mapMarkerCoords[1])
         .then((result)=>{

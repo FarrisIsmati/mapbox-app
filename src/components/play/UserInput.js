@@ -10,14 +10,21 @@ import Input1                         from '../common/inputs/Input1'
 const UserInput = (props) => (
   <div className="userinput__holder">
     {props.parity() && !props.state.game.completed ?
-      <Input1
-      onSubmit={e=>{props.submitChat(e, e.target[0].value, props); e.target[0].value = ""}}
-      className="input input__visible input__medium"/>:
-      <Input1
+      <div className="flex">
+        <Input1
+        onSubmit={e=>{props.submitChat(e, e.target[0].value, props); e.target[0].value = ""}}
+        classNameForm="margin__right__15"
+        className="input input__visible input__medium margin__right__15"/>
+        <Button1 click={e=>props.submitGuess()} fontSize="2em" name="Guess" />
+      </div>:
+      <div className="flex">
+        <Input1
         onSubmit={e=>e.preventDefault()}
+        classNameForm="margin__right__15"
         className="input input__deactive input__medium"/>
+        <Button1 className="button__one__deactive" click={e=>e.preventDefault()} fontSize="2em" name="Guess" />
+      </div>
     }
-    <Button1 click={e=>props.submitGuess()} fontSize="2em" name="Guess" />
   </div>
 )
 

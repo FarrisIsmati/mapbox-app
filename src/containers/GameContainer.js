@@ -55,6 +55,11 @@ class GameContainer extends Component {
     input.disabled = true
     let self = this
     this.props.changeNameHolderClass('name__holder name__holder__deactive')
+
+    if (this.props.player.name === ''){
+      this.props.changePlayerName('ANONYMOUS');
+    }
+
     axios.put('https://mapboxwhereisit.herokuapp.com/game/name/' + this.props.game.id,{
       'name': this.props.player.name,
       'host': this.props.player.host

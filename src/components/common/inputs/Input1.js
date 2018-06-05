@@ -2,8 +2,8 @@
 import React                          from 'react'
 import PropTypes                      from 'prop-types'
 
-const Input1 = ({type, className, maxLength, placeholder, onSubmit, onChange, value, size}) => (
-  <form onSubmit={ e => {onSubmit(e,this.input)} }>
+const Input1 = ({type, className, classNameForm, maxLength, placeholder, onSubmit, onChange, value, size}) => (
+  <form className={classNameForm} onSubmit={ e => {onSubmit(e,this.input)} }>
       <input
         ref={el=> {this.input = el}}
         type={type}
@@ -19,6 +19,7 @@ const Input1 = ({type, className, maxLength, placeholder, onSubmit, onChange, va
 
 Input1.propTypes = {
   type: PropTypes.string,
+  classNameForm: PropTypes.string,
   className: PropTypes.string,
   maxLength: PropTypes.string,
   placeholder: PropTypes.string,
