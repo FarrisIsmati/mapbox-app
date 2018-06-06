@@ -59,7 +59,8 @@ export function changeActiveState(id, bool){
     axios.put('https://mapboxwhereisit.herokuapp.com/game/active/' + id,{
       "active": bool
     })
-    .then(()=>{
+    .then((done)=>{
+      console.log(done);
       dispatch(changeActiveStateAPI(bool))
     })
   }
