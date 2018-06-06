@@ -115,6 +115,7 @@ class GameContainer extends Component {
         }
       })
       .catch((err)=>{
+        this.props.history.push('/');
         console.log(err)
       })
     } else {

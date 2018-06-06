@@ -1,5 +1,11 @@
 # ABOUT
 
-I'm making a version of 20 questions where it's only about locations. A user will be able to start a game and invite someone by sending them a link. Once in the game the invited person will have a set number of questions to ask to in order to find the location. 
+An online game where you set a location and another user has to guess it in real time. 
 
-**I'm making this project to work on my skill specifically with Mapbox GL, Websockets, TDD, Frontend Interactivity, React, Redux, Node, & MongoDB.**
+Instructions
+As a host you set a location (either by dragging the point or using the search bar) and radius, you want someone to guess then once the game is started send them the link. Once they are connected they will have 10 chances to find your location and you can only respond with Yes, No, & IDK.
+
+Link: https://fckwhereisit.surge.sh/
+
+**Built with Mapbox GL JS API, React, Redux, Node, Express, Websockets, & MongoDB.**
+**NOT COMPATIBLE WITH IE**
