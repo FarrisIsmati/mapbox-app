@@ -5,6 +5,10 @@
   justify-content: space-between;
   pointer-events: auto;
 
+  & .flex__vertcenter div:first-of-type {
+    margin-right: 8%;
+  }
+
   & form {
     width: 60%;
   }
@@ -13,7 +17,6 @@
     padding: 0 10px;
   }
 }
-
 
 //MEDIA QUERY
 @media (max-width: 768px) {

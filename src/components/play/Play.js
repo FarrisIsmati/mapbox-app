@@ -37,8 +37,8 @@ class Play extends Component {
               socketUtils.emitReduceGuess(this.props)
               if (this.props.game.guesses - 1 < 1){
                 this.props.changeCompleteGame(true, this.props.game.id)
-                socketUtils.emitSendMessage(this.props, `${this.props.player.name}, you lost :(`)
-                socketUtils.emitSendMessage(this.props, 'The game is over')
+                socketUtils.emitSendMessage(this.props, `${this.props.game.title} ${this.props.player.name} YOU LOST!`)
+                socketUtils.emitSendMessage(this.props, 'THE GAME IS OVER')
               }
             }
         })
