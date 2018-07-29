@@ -8,4 +8,3 @@ As a host you set a location (either by dragging the point or using the search b
 Link: https://fckwhereisit.surge.sh/
 
 **Built with Mapbox GL JS API, React, Redux, Node, Express, Websockets, & MongoDB.**
-**NOT COMPATIBLE WITH IE**
