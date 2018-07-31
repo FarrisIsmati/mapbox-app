@@ -76,6 +76,12 @@ class Play extends Component {
   render(){
     return(
       <div className={this.props.ui.setupPlayClass}>
+        { this.props.game.active ?
+          <div className="absolutecentertext__holder">
+            <h1>Copy Link</h1>
+          </div> :
+          null
+        }
         <div className="chatbox__holder">
           <ChatLog state={this.props}/>
           <div className="guesscounter__holder">
