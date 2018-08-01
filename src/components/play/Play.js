@@ -88,7 +88,7 @@ class Play extends Component {
   render(){
     return(
       <div className={this.props.ui.setupPlayClass}>
-        { !this.props.game.chatLog.length ?
+        { this.props.player.host && !this.props.game.chatLog.length ?
           <div className={this.state.linkClass} onClick={()=>{this.setState({linkClass: 'absolutecentertext__holder__hidden'})}}>
             <CopyToClipboard text={`https://fckwhereisit.surge.sh/game/${this.props.game.id}`}>
               <div>
