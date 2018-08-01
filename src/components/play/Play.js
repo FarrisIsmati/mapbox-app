@@ -2,6 +2,7 @@
 import React, { Component }           from 'react'
 import socketUtils                    from '../../utils/socketHelpers.js'
 import axios                          from 'axios'
+import { CopyToClipboard }             from 'react-copy-to-clipboard'
 
 //COMPONENTS
 import ChatLog                        from './ChatLog'
@@ -11,6 +12,11 @@ import UserInput                      from './UserInput'
 class Play extends Component {
   constructor(){
     super()
+
+    this.state = {
+      linkCopy: 'Link',
+      linkClass: 'absolutecentertext__holder'
+    }
 
     this.submitGuess = this.submitGuess.bind(this)
     this.checkParity = this.checkParity.bind(this)
@@ -59,6 +65,7 @@ class Play extends Component {
     setTimeout(()=>{
       self.props.changeSetupPlayClass("play__holder ui__holder__active")
     }, 100)
+
     //Send connected message
     if (!this.props.player.host && this.props.player.name && this.props.game.active) {
       socketUtils.emitPlayerConnect(this.props)
@@ -71,14 +78,23 @@ class Play extends Component {
     socketUtils.onUpdateMarkerCoordinates(this.props)
     socketUtils.onPlayerDisconnect(this.props, "Has Disconnected!")
     socketUtils.onReduceGuess(this.props)
+
+    //Set state of copy link button
+    this.setState({
+      value: `https://fckwhereisit.surge.sh/game/${this.props.game.id}`
+    })
   }
 
   render(){
     return(
       <div className={this.props.ui.setupPlayClass}>
-        { this.props.game.active ?
-          <div className="absolutecentertext__holder">
-            <h1>Copy Link</h1>
+        { !this.props.game.chatLog.length ?
+          <div className={this.state.linkClass} onClick={()=>{this.setState({linkClass: 'absolutecentertext__holder__hidden'})}}>
+            <CopyToClipboard text={`https://fckwhereisit.surge.sh/game/${this.props.game.id}`}>
+              <div>
+                <h1 className='button__one button__one__active' onClick={()=>{this.setState({linkCopy: 'Copied'})}} value={this.state.linkCopy}>{this.state.linkCopy}</h1>
+              </div>
+            </CopyToClipboard>
           </div> :
           null
         }
